@@ -6,10 +6,10 @@
   (exwm-randr-workspace-monitor-plist '(0 "eDP-1") "Set monitors for randr")
   :config
   (require 'exwm-randr)
-;;  (add-hook 'exwm-randr-screen-change-hook
-;;            (lambda ()
-;;              (start-process-shell-command
-;;               "xrandr" nil "xrandr --output eDP-1 --mode 1920x1080 --rate 60.01 --dpi 158 --rotate normal")))
+  (add-hook 'exwm-randr-screen-change-hook
+            (lambda ()
+              (start-process-shell-command
+               "xrandr" nil "xrandr --output eDP-1 --mode 1920x1080 --rate 60.01 --dpi 158 --rotate normal")))
   (exwm-randr-enable))
 
 (use-package! exwm
@@ -27,6 +27,7 @@
   (require 'exwm-xim)
   (exwm-xim-enable)
 
+  ;; Bindings
   (exwm-input-set-key (kbd "s-&")
                       (lambda (command)
                         (interactive (list (read-shell-command "$ ")))

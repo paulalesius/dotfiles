@@ -16,8 +16,6 @@
 ;; Ensure encoding
 (set-language-environment "UTF-8")
 (set-default-coding-systems 'utf-8)
-;; Set font
-(set-frame-font "Fira Code:style=Regular" nil t)
 
 ;; Doom exposes five (optional) variables for controlling fonts in Doom. Here
 ;; are the three important ones:
@@ -36,6 +34,12 @@
 ;; available. You can either set `doom-theme' or manually load a theme with the
 ;; `load-theme' function. This is the default:
 (setq doom-theme 'doom-one)
+
+;; :size 12
+(setq doom-font (font-spec :family "Fira Code" :size 13 :weight 'Regular))
+;; Don't know what variable-pitch is
+;; ;;doom-variable-pitch-font (font-spec :family "Noto Serif" :size 13)
+;;ivy-posframe-font (font-spec :family "Fira Code" :size 15))
 
 ;; If you use `org' and don't want your org files in the default location below,
 ;; change `org-directory'. It must be set before org loads!

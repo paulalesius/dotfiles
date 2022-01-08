@@ -8,11 +8,11 @@
 ;;(doom-log "init.el: doom-reloading-p is: %s" doom-reloading-p)
 ;;(doom-log "init.el: IS-EXWM: %s" IS-EXWM)
 
-(when (and doom-interactive-p
-           (not doom-reloading-p)
-           IS-EXWM)
+;;(when (and doom-interactive-p
+;;           (not doom-reloading-p)
+;;           IS-EXWM)
   ;;(server-start)
   ;;(setenv "EDITOR" "emacsclient")
   ;;(require 'exwm)
   ;;(exwm-enable))
-)
+;;)

@@ -37,7 +37,8 @@ shadow-exclude = [
 ];
 
 # Logs
-log-level = "DEBUG";
+#log-level = "DEBUG";
+log-level = "ERROR";
 log-file = "/tmp/picom.log";
 
 
@@ -61,7 +62,7 @@ opacity-rule = [
 
 blur: {
 	method = "dual_kawase";
-    strength = 2.0;
+    	strength = 2.0;
 	# deviation = 1.0;
 	# kernel = "11x11gaussian";
 }

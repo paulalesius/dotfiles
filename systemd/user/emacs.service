@@ -1,0 +1,34 @@
+## If your Emacs is installed in a non-standard location, you may need
+## to copy this file to a standard directory, eg ~/.config/systemd/user/ .
+## If you install this file by hand, change the "Exec" lines below
+## to use absolute file names for the executables.
+[Unit]
+Description=Emacs text editor
+Documentation=info:emacs man:emacs(1) https://gnu.org/software/emacs/
+#After=gpg-agent.socket
+
+[Service]
+Type=notify
+ExecStart=emacs --fg-daemon
+# When systemd shuts it down it exits with status 15
+SuccessExitStatus=15
+ExecStop=emacsclient --eval "(kill-emacs)"
+Environment=SSH_AUTH_SOCK=%t/gnupg/S.gpg-agent
+Environment=XMODIFIERS=@im=exwm-xim
+Environment=GTK_IM_MODULE=xim
+Environment=QT_IM_MODULE=xim
+Environment=CLUTTER_IM_MODULE=xim
+Environment=GDK_CORE_DEVICE_EVENTS=1
+Environment=PLASMA_USE_QT_SCALING=1
+Environment=VISUAL=emacsclient
+Environment=EDITOR=emacsclient
+Environment=GDK_SCALE=1
+Environment=GDK_BACKEND=x11
+Environment=CLUTTER_BACKEND=x11
+Environment=GDK_DPI_SCALE=1
+Environment=MOZ_USE_XINPUT2=1
+Environment=MOZ_DISABLE_WAYLAND=1
+Restart=on-failure
+
+#[Install]
+#WantedBy=default.target
