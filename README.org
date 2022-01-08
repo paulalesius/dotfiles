@@ -1,0 +1,6 @@
+My idiomatic $HOME/.config aka "dotfiles". It is idiomatic in the sense that everything will be configured where it is meant to be configured. For instance:
+
+- variables for the Emacs daemon in the service file that starts it.
+- Emacs is activated through emacs.socket
+- Emacs Exwm is started with $HOME/.config/exwm/exwm.sh
+- Doom module for all exwm-related configurations, other configs for sparse tweaks/configs
