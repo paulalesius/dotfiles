@@ -1,0 +1,6 @@
+[init]
+	defaultBranch = main
+[user]
+	email = paul@unnservice.com
+	name = Paul Alesius
+	signingkey = 4FBD74455FDD4E6E75B1D91BFAB8710FBCD20E1C

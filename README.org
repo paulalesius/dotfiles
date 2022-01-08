@@ -4,3 +4,4 @@ My idiomatic $HOME/.config aka "dotfiles". It is idiomatic in the sense that eve
 - Emacs is activated through emacs.socket
 - Emacs Exwm is started with $HOME/.config/exwm/exwm.sh
 - Doom module for all exwm-related configurations, other configs for sparse tweaks/configs
+- git global $HOME/.gitconfig lives in $XDG_CONFIG_HOME/git/config

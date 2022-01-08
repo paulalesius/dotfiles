@@ -13,6 +13,7 @@ ExecStart=emacs --fg-daemon
 # When systemd shuts it down it exits with status 15
 SuccessExitStatus=15
 ExecStop=emacsclient --eval "(kill-emacs)"
+Environment=XDG_CONFIG_HOME=%h
 Environment=SSH_AUTH_SOCK=%t/gnupg/S.gpg-agent
 Environment=XMODIFIERS=@im=exwm-xim
 Environment=GTK_IM_MODULE=xim

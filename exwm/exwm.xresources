@@ -1,3 +1,6 @@
+!! This needs to be set in 96 for Xorg instead of my true resolution of 158 dpi. If
+!! this is set to 158 then everything will be upscaled.
+!! 96 in Xft seems to make to standard size, relative to the 158 real dpi.
 Xft.dpi: 96
 Xft.autohint: 0
 Xft.lcdfilter: lcddefault
