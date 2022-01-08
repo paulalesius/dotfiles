@@ -131,7 +131,8 @@
         lsp-lens-enable t))
 
 (after! doom-modeline
-  (setq doom-modeline-buffer-file-name-style 'truncate-from-project
+  (setq doom-modeline-buffer-file-name-style 'truncate-with-project
+        doom-modeline-icon t
         doom-modeline-unicode-fallback t))
 
 ;; Doesn't seem to do anything when set
@@ -146,3 +147,6 @@
         doom-themes-enable-italic t)
   (doom-themes-visual-bell-config)
   (doom-themes-org-config))
+
+(after! vterm
+  (setq vterm-kill-buffer-on-exit t))

@@ -1,3 +1,9 @@
+*
+!.gitignore
+!Dharkael
+!alacritty
 !doom
-!systemd
-#*
+!exwm
+!gtk-3.0/settings.ini
+!systemd/user/emacs*
+!transmission/settings.json
