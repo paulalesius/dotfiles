@@ -1,7 +1,7 @@
 *
 !.gitignore
 !README.org
-!git/config
+!git
 !Dharkael
 !alacritty
 !doom
