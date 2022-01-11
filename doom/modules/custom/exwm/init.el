@@ -1,4 +1,4 @@
-;;; ui/exwm/init.el -*- lexical-binding: t; -*-
+;;; custom/exwm/init.el -*- lexical-binding: t; -*-
 
 
 

@@ -1,4 +1,4 @@
-;;; ui/exwm/config.el -*- lexical-binding: t; -*-
+;;; custom/exwm/config.el -*- lexical-binding: t; -*-
 
 
 (use-package! exwm-randr
@@ -18,6 +18,7 @@
   :after (exwm-randr)
   :custom
   (use-dialog-box nil "Disable dialog boxes since they are unusable in EXWM")
+  (exwm-debug nil "Set to true to debug exwm")
   ;;(exwm-input-line-mode-passthrough t "Pass all keypresses to emacs in line mode.")
   :hook (exwm-update-class . (lambda () (exwm-workspace-rename-buffer exwm-class-name)))
   :config
@@ -65,6 +66,8 @@
    desktop-environment-volume-toggle-microphone-command "pactl set-source-mute 0 toggle")
   (desktop-environment-mode))
 
+;;(use-package! exwm-firefox
+;;  :after exwm)
 
 ;;(use-package! framemove
 ;;  :after exwm
