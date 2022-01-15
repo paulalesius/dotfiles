@@ -34,6 +34,10 @@
                         (interactive (list (read-shell-command "$ ")))
                         (start-process-shell-command command nil command)))
 
+  ;; Forward "Esc" key to Emacs
+  (dolist (k `(escape))
+    (cl-pushnew k exwm-input-prefix-keys))
+
   (setq display-time-format "%H:%M:%S %Y-%m-%d"
         display-time-day-and-date 't
         display-time-24hr-format 't)

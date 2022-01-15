@@ -6,13 +6,14 @@ wmname EXWM
 
 # Disable access control for the current user.
 xhost +SI:localuser:$USER
+#xhost +
 
 # Load Xresources
 #[[ -f ~/.Xresources ]] &&
 xrdb -merge -I$HOME ~/.config/exwm/exwm.xresources
 
 # Make Java applications aware this is a non-reparenting window manager.
-export _JAVA_AWT_WM_NONREPARENTING=1
+#export _JAVA_AWT_WM_NONREPARENTING=1
 # All environment is set in systemd unit
 #export XMODIFIERS=@im=exwm-xim
 #export GTK_IM_MODULE=xim

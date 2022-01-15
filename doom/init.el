@@ -21,6 +21,7 @@
 
        :custom
        exwm
+       exwm-firefox
 
        :completion
        company           ; the ultimate code completion backend
