@@ -27,6 +27,9 @@
 (set-language-environment "UTF-8")
 (set-default-coding-systems 'utf-8)
 
+;; Looks ugly and doesn't align with modeline theme, and needs to use default-frame-alist to apply to all frames
+;;(modify-frame-parameters (selected-frame) '((right-divider-width . 10) (bottom-divider-width . 10)))
+
 (after! compile
   (setq compilation-scroll-output t))
 

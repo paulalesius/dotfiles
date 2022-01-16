@@ -2,6 +2,7 @@
 
 
 (use-package! exwm-firefox-evil
-  ;;:after (exwm)
-  :commands (exwm-firefox-evil-activate-if-firefox)
-  :hook (exwm-manage-finish . 'exwm-firefox-evil-activate-if-firefox))
+  ;;:after (exwm, evil)
+  :after (exwm)
+  :config
+  (add-hook 'exwm-manage-finish-hook #'exwm-firefox-evil-activate-if-firefox))

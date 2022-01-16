@@ -38,7 +38,7 @@
   (dolist (k `(escape))
     (cl-pushnew k exwm-input-prefix-keys))
 
-  (setq display-time-format "%H:%M:%S %Y-%m-%d"
+  (setq display-time-format "%a %H:%M:%S %Y-%m-%d"
         display-time-day-and-date 't
         display-time-24hr-format 't)
   (display-time-mode 1)

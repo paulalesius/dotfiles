@@ -67,6 +67,5 @@
 ;;           :build (:not compile)))
 
 ;; Fix bug where Doom Emacs pins to the wrong commit in the wrong repo
-(package! dired-git-info
-  :pin "9461476a28a5fec0784260f6e318237c662c3430")
-
+;;(package! dired-git-info
+;;  :pin "9461476a28a5fec0784260f6e318237c662c3430")
