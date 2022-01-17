@@ -56,4 +56,4 @@ xset r rate 200 60
 picom -b --experimental-backends --dbus --config ~/.config/exwm/exwm.picom
 
 # Create a frame with emacsclient
-exec dbus-launch --exit-with-session emacsclient -c
+exec dbus-launch --exit-with-session emacsclient -cs server -F '((fullscreen . fullboth))'

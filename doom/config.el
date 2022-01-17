@@ -130,3 +130,6 @@
 
 (after! vterm
   (setq vterm-kill-buffer-on-exit t))
+
+(after! neotree
+  (setq neo-window-position 'right))
