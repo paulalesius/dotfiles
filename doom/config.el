@@ -7,9 +7,18 @@
 ;; Default is 800kb.
 (setq gc-cons-threshold (* 50 1000 1000))
 
+;; Ensure encoding
+(set-language-environment "UTF-8")
+(set-default-coding-systems 'utf-8)
+;; Looks ugly and doesn't align with modeline theme, and needs to use default-frame-alist to apply to all frames
+;;(modify-frame-parameters (selected-frame) '((right-divider-width . 10) (bottom-divider-width . 10)))
+
+
 ;; Some functionality uses this to identify you, e.g. GPG configuration, email
 ;; clients, file templates and snippets.
-(setq user-full-name "Paul Alesius"
+(setq gc-cons-threshold (* 50 1000 1000)
+
+      user-full-name "Paul Alesius"
       user-mail-address "paul@unnservice.com"
       user-real-login-name "paulalesius"
 
@@ -23,12 +32,14 @@
       ;;; org mode
       org-directory "~/org/")
 
-;; Ensure encoding
-(set-language-environment "UTF-8")
-(set-default-coding-systems 'utf-8)
-
-;; Looks ugly and doesn't align with modeline theme, and needs to use default-frame-alist to apply to all frames
-;;(modify-frame-parameters (selected-frame) '((right-divider-width . 10) (bottom-divider-width . 10)))
+;; Startup hook from https://config.daviwil.com/emacs
+(add-hook! 'emacs-startup-hook
+  (lambda ()
+    (message "*** Emacs loaded in %s with %d garbage collections."
+             (format "%.2f seconds"
+                     (float-time
+                      (time-subtract after-init-time before-init-time)))
+             gcs-done)))
 
 (after! compile
   (setq compilation-scroll-output t))
@@ -128,7 +139,11 @@
   (doom-themes-visual-bell-config)
   (doom-themes-org-config))
 
-(after! vterm
+;; Make links clickable in terminals, and kill buffer once the terminal exists.
+(use-package! vterm
+  :hook
+  (vterm-mode . goto-address-mode)
+  :config
   (setq vterm-kill-buffer-on-exit t))
 
 (after! neotree

@@ -1,8 +1,6 @@
 ;;; custom/exwm/init.el -*- lexical-binding: t; -*-
 
 
-
-
 ;;
 ;; Don't start exwm with a command line switch.
 ;;
