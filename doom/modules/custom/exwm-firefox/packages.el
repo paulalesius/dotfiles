@@ -3,5 +3,6 @@
 (package! exwm-firefox-evil
   :recipe (:host github :repo "walseb/exwm-firefox-evil"))
 
+;; Needs further work to integrate with above
 ;;(package! exwm-firefox
-;;  :recipe (:host github :repo "ieure/exwm-firefox"))
+;;  :recipe (:host github :repo "paulalesius/exwm-firefox"))

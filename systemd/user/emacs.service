@@ -13,12 +13,6 @@ ExecStart=emacs --fg-daemon
 # When systemd shuts it down it exits with status 15
 SuccessExitStatus=15
 ExecStop=emacsclient --eval "(kill-emacs)"
-# All XDG paths use their default configuration
-#Environment=XDG_CONFIG_HOME=%h
-#Environment=XDG_CACHE_HOME=%h/.cache
-#Environment=XDG_DATA_HOME=%h/.local/share
-#Environment=XDG_DATA_DIRS=/usr/local/share/:/usr/share/
-#Environment=XDG_CONFIG_DIRS=/etc/xdg
 Environment=_JAVA_AWT_WM_NONREPARENTING=1
 Environment=SSH_AUTH_SOCK=%t/gnupg/S.gpg-agent
 Environment=XMODIFIERS=@im=exwm-xim

@@ -19,31 +19,62 @@
   :custom
   (use-dialog-box nil "Disable dialog boxes since they are unusable in EXWM")
   (exwm-debug nil "Set to true to debug exwm")
+  (exwm-workspace-number 4)
   ;;(exwm-input-line-mode-passthrough t "Pass all keypresses to emacs in line mode.")
   :hook (exwm-update-class . (lambda () (exwm-workspace-rename-buffer exwm-class-name)))
   :config
-  (require 'exwm-config)
-  (exwm-config-example)
 
   (require 'exwm-xim)
   (exwm-xim-enable)
-
-  ;; Bindings
-  (exwm-input-set-key (kbd "s-&")
-                      (lambda (command)
-                        (interactive (list (read-shell-command "$ ")))
-                        (start-process-shell-command command nil command)))
 
   ;; Forward "Esc" key to Emacs
   (dolist (k `(escape))
     (cl-pushnew k exwm-input-prefix-keys))
 
+  ;; Copied from exwm-config-example
+  (setq exwm-input-global-keys
+        `(
+          ;; 's-q': Reset (to line-mode).
+          ([?\s-q] . exwm-reset)
+          ;; 's-w': Switch workspace.
+          ([?\s-w] . exwm-workspace-switch)
+          ;; 's-r': Launch application.
+          ([?\s-r] . (lambda (command)
+                       (interactive (list (read-shell-command "$ ")))
+                       (start-process-shell-command command nil command)))
+          ;; 's-N': Switch to certain workspace.
+          ,@(mapcar (lambda (i)
+                      `(,(kbd (format "s-%d" i)) .
+                        (lambda ()
+                          (interactive)
+                          (exwm-workspace-switch-create ,i))))
+                    (number-sequence 0 9))))
+  ;; Line-editing shortcuts
+  (setq exwm-input-simulation-keys
+        '(([?\C-b] . [left])
+          ([?\C-f] . [right])
+          ([?\C-p] . [up])
+          ([?\C-n] . [down])
+          ([?\C-a] . [home])
+          ([?\C-e] . [end])
+          ([?\M-v] . [prior])
+          ([?\C-v] . [next])
+          ([?\C-d] . [delete])
+          ([?\C-k] . [S-end delete])))
+
+  (exwm-enable)
   (setq display-time-format "%a %H:%M:%S %Y-%m-%d"
         display-time-day-and-date 't
         display-time-24hr-format 't)
+
   (display-time-mode 1)
   (display-battery-mode 1)
-  (window-divider-mode 0))
+  (window-divider-mode 0)
+  ;; Copied from (exwm-config-misc)
+  (menu-bar-mode -1)
+  (tool-bar-mode -1)
+  (scroll-bar-mode -1)
+  (fringe-mode 1))
 
 (use-package! exwm-workspace
   :after exwm

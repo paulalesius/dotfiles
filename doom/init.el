@@ -22,12 +22,13 @@
        :custom
        exwm
        exwm-firefox
+       telega
 
        :completion
        company           ; the ultimate code completion backend
-       ;;helm              ; the *other* search engine for love and life
+       ;;(helm +fuzzy +icons)              ; the *other* search engine for love and life
        ;;ido               ; the other *other* search engine...
-       ;;ivy               ; a search engine for love and life
+       ;;(ivy +fuzzy +icons)               ; a search engine for love and life
        (vertico +icons)           ; The search engine of the future
 
        :ui
