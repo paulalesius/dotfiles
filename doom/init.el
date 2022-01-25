@@ -18,12 +18,6 @@
        ;;chinese
        ;;japanese
        ;;layout            ; auie,ctsrnm is the superior home row
-
-       :custom
-       exwm
-       exwm-firefox
-       telega
-
        :completion
        company           ; the ultimate code completion backend
        ;;(helm +fuzzy +icons)              ; the *other* search engine for love and life
@@ -51,10 +45,10 @@
        ;;tabs              ; a tab bar for Emacs
        ;;treemacs          ; a project drawer, like neotree but cooler
        ;;unicode           ; extended unicode support for various languages
-       vc-gutter         ; vcs diff in the fringe
-       vi-tilde-fringe   ; fringe tildes to mark beyond EOB
-       window-select     ; visually switch windows, (without +switch-window, it uses ace-window instead)
-       workspaces        ; tab emulation, persistence & separate workspaces
+       ;;vc-gutter         ; vcs diff in the fringe
+       ;;vi-tilde-fringe   ; fringe tildes to mark beyond EOB
+       ;;window-select     ; visually switch windows, (without +switch-window, it uses ace-window instead)
+       ;;workspaces        ; tab emulation, persistence & separate workspaces
        ;;zen               ; distraction-free coding or writing
 
        :editor
@@ -192,4 +186,12 @@
        :config
        ;;literate
        (default +bindings +smartparens)
+
+
+       ;; Private modules configuring different aspects of the desktop
+       :private
+       core
+       exwm
+       exwm-firefox
+       telega
 )

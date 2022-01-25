@@ -146,5 +146,6 @@
   :config
   (setq vterm-kill-buffer-on-exit t))
 
+;; Neotree to the right
 (after! neotree
   (setq neo-window-position 'right))

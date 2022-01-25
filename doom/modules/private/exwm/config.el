@@ -1,21 +1,21 @@
 ;;; custom/exwm/config.el -*- lexical-binding: t; -*-
 
-
-(use-package! exwm-randr
-  :custom
-  (exwm-randr-workspace-monitor-plist '(0 "eDP-1") "Set monitors for randr")
-  :config
-  (require 'exwm-randr)
-  (add-hook 'exwm-randr-screen-change-hook
-            (lambda ()
-              (start-process-shell-command
-               "xrandr" nil "xrandr --output eDP-1 --mode 1920x1080 --rate 60.01 --dpi 158 --rotate normal")))
-  (exwm-randr-enable))
+;; Doesn't seem necessary, Xorg sets up DPI and resolution
+;;(use-package! exwm-randr
+;;  :custom
+;;  (exwm-randr-workspace-monitor-plist '(0 "eDP-1") "Set monitors for randr")
+;;  :config
+;;  (require 'exwm-randr)
+;;  (add-hook 'exwm-randr-screen-change-hook
+;;            (lambda ()
+;;              (start-process-shell-command
+;;               "xrandr" nil "xrandr --output eDP-1 --mode 1920x1080 --rate 60.01 --dpi 158 --rotate normal")))
+;;  (exwm-randr-enable))
 
 (use-package! exwm
   ;;:defer t
   ;;:commands (exwm-enable)
-  :after (exwm-randr)
+  ;;:after (exwm-randr)
   :custom
   (use-dialog-box nil "Disable dialog boxes since they are unusable in EXWM")
   (exwm-debug nil "Set to true to debug exwm")
@@ -23,7 +23,6 @@
   ;;(exwm-input-line-mode-passthrough t "Pass all keypresses to emacs in line mode.")
   :hook (exwm-update-class . (lambda () (exwm-workspace-rename-buffer exwm-class-name)))
   :config
-
   (require 'exwm-xim)
   (exwm-xim-enable)
 
@@ -62,19 +61,7 @@
           ([?\C-d] . [delete])
           ([?\C-k] . [S-end delete])))
 
-  (exwm-enable)
-  (setq display-time-format "%a %H:%M:%S %Y-%m-%d"
-        display-time-day-and-date 't
-        display-time-24hr-format 't)
-
-  (display-time-mode 1)
-  (display-battery-mode 1)
-  (window-divider-mode 0)
-  ;; Copied from (exwm-config-misc)
-  (menu-bar-mode -1)
-  (tool-bar-mode -1)
-  (scroll-bar-mode -1)
-  (fringe-mode 1))
+  (exwm-enable))
 
 (use-package! exwm-workspace
   :after exwm
@@ -100,9 +87,6 @@
    desktop-environment-volume-toggle-command "pactl -- set-sink-mute 0 toggle"
    desktop-environment-volume-toggle-microphone-command "pactl set-source-mute 0 toggle")
   (desktop-environment-mode))
-
-;;(use-package! exwm-firefox
-;;  :after exwm)
 
 ;;(use-package! framemove
 ;;  :after exwm
