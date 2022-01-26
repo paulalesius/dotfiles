@@ -4,7 +4,9 @@
 
 wmname EXWM
 
-# Don't know what this does
+xcalib -d $DISPLAY /home/noname/.config/xcalib/LENOVO_C740-14IML-N140HCE_ET2_CMN_N140HCE_ET2.icm
+
+# Don't know what this does, but it seems to correct xdpyinfo screen dimensions in millimeters
 xrandr --fbmm `xrandr | sed -n '/ connected / {s/.* \([0-9]\+\)mm x \([0-9]\+\)mm/\1x\2/p;q}'`
 
 # Disable access control for the current user.
@@ -26,4 +28,4 @@ xset r rate 200 60
 picom -b --experimental-backends --dbus --config ~/.config/exwm/exwm.picom
 
 # Create a frame with emacsclient
-exec dbus-launch --exit-with-session emacsclient -cs server -F '((fullscreen . fullboth))'
+exec dbus-launch --exit-with-session emacsclient -cs server --frame-parameters="((fullscreen . fullboth))"

@@ -13,6 +13,9 @@ ExecStart=emacs --fg-daemon
 # When systemd shuts it down it exits with status 15
 SuccessExitStatus=15
 ExecStop=emacsclient --eval "(kill-emacs)"
+# This needs to be set to nothing, to disable input methods presumably. This
+# will result in special keys working on the keyboard in emacs, like tilde, tic, diaerisis etc.
+Environment=XMODIFIERS=
 Environment=_JAVA_AWT_WM_NONREPARENTING=1
 Environment=SSH_AUTH_SOCK=%t/gnupg/S.gpg-agent
 Environment=CLUTTER_IM_MODULE=xim

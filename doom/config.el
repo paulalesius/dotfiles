@@ -17,6 +17,15 @@
 
 ;; @TODO This works but is probably not the idiomatic Doom way, should really modify initial-frame-alist and default-frame-alist
 ;; and I don't know the idiomatic way of setting these variables yet.
+;;
+;; - tried running emacsclient with --frame-parameters="'((fullscreen . fullboth)(undecorated . t))"
+;; - tried adding a hook to init.el in doom:
+;;   (add-hook 'before-make-frame-hook
+;;     #'(lambda ()
+;;       (add-to-list 'default-frame-alist '(fullscreen . fullboth))
+;;       (add-to-list 'default-frame-alist '(undecorated . t))))
+;;   But only fullscreen seems to take effect when the emacsclient creates the frame, we still have decoration fringes
+;; - tried (set-frame-parameter) in init.el, still no effect
 (modify-frame-parameters (selected-frame '((undecorated . t))))
 
 ;; Some functionality uses this to identify you, e.g. GPG configuration, email
