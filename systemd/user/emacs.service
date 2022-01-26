@@ -15,9 +15,6 @@ SuccessExitStatus=15
 ExecStop=emacsclient --eval "(kill-emacs)"
 Environment=_JAVA_AWT_WM_NONREPARENTING=1
 Environment=SSH_AUTH_SOCK=%t/gnupg/S.gpg-agent
-Environment=XMODIFIERS=@im=exwm-xim
-Environment=GTK_IM_MODULE=xim
-Environment=QT_IM_MODULE=xim
 Environment=CLUTTER_IM_MODULE=xim
 Environment=GDK_CORE_DEVICE_EVENTS=1
 Environment=PLASMA_USE_QT_SCALING=1

@@ -1,11 +1,12 @@
 ;;; custom/exwm/config.el -*- lexical-binding: t; -*-
 
-;; Doesn't seem necessary, Xorg sets up DPI and resolution
+;; When plugging in a screen, the screen-change-hook is run. Have only one screen at present
+;; so this is not really necessary since the monitor will never change so the hook is never called.
 ;;(use-package! exwm-randr
 ;;  :custom
 ;;  (exwm-randr-workspace-monitor-plist '(0 "eDP-1") "Set monitors for randr")
 ;;  :config
-;;  (require 'exwm-randr)
+;;  ;;(require 'exwm-randr)
 ;;  (add-hook 'exwm-randr-screen-change-hook
 ;;            (lambda ()
 ;;              (start-process-shell-command
@@ -13,8 +14,6 @@
 ;;  (exwm-randr-enable))
 
 (use-package! exwm
-  ;;:defer t
-  ;;:commands (exwm-enable)
   ;;:after (exwm-randr)
   :custom
   (use-dialog-box nil "Disable dialog boxes since they are unusable in EXWM")
@@ -23,14 +22,12 @@
   ;;(exwm-input-line-mode-passthrough t "Pass all keypresses to emacs in line mode.")
   :hook (exwm-update-class . (lambda () (exwm-workspace-rename-buffer exwm-class-name)))
   :config
-  (require 'exwm-xim)
-  (exwm-xim-enable)
 
   ;; Forward "Esc" key to Emacs
   (dolist (k `(escape))
     (cl-pushnew k exwm-input-prefix-keys))
 
-  ;; Copied from exwm-config-example
+  ;; Copied from exwm-config-example, needs to be called before exwm-enable.
   (setq exwm-input-global-keys
         `(
           ;; 's-q': Reset (to line-mode).
