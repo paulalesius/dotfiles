@@ -155,10 +155,10 @@
 
 ;; Make links clickable in terminals, and kill buffer once the terminal exists.
 (use-package! vterm
-  :hook
-  (vterm-mode . goto-address-mode)
-  :config
-  (setq vterm-kill-buffer-on-exit t))
+  ;;:hook
+  ;;(vterm-mode . goto-address-mode)
+  :custom
+  (vterm-kill-buffer-on-exit t))
 
 ;; Neotree to the right
 (after! neotree

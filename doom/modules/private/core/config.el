@@ -35,3 +35,7 @@
 (use-package! fringe
   :config
   (fringe-mode 1))
+
+(use-package! goto-addr
+  :config
+  (global-goto-address-mode 1))
