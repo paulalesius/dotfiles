@@ -10,5 +10,7 @@ Xft.hintstyle: hintslight
 Xft.hinting: 1
 Xft.antialias: 1
 Xft.rgba: rgb
-Emacs.fontBackend: xft
-Emacs.useXIM: off
+Emacs.FontBackend: xft
+;; Dont actually disable XIM because it is required for writing special
+;; characters from the keyboard layout.
+;; Emacs.useXIM: off
