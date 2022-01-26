@@ -2,6 +2,7 @@
 !! this is set to 158 then everything will be upscaled.
 !! 96 in Xft seems to make to standard size, relative to the 158 real dpi.
 !! Qt applications like kernel xconfig, look oversized without this
+!! Xft.dpi 157
 Xft.dpi: 96
 Xft.autohint: 0
 Xft.lcdfilter: lcddefault

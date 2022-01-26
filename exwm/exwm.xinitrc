@@ -4,6 +4,9 @@
 
 wmname EXWM
 
+# Don't know what this does
+xrandr --fbmm `xrandr | sed -n '/ connected / {s/.* \([0-9]\+\)mm x \([0-9]\+\)mm/\1x\2/p;q}'`
+
 # Disable access control for the current user.
 xhost +SI:localuser:$USER
 #xhost +

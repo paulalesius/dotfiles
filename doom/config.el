@@ -10,9 +10,14 @@
 ;; Ensure encoding
 (set-language-environment "UTF-8")
 (set-default-coding-systems 'utf-8)
+;; Remove all window manager decorations
+;;(set-frame-parameter nil 'undecorated t)
 ;; Looks ugly and doesn't align with modeline theme, and needs to use default-frame-alist to apply to all frames
 ;;(modify-frame-parameters (selected-frame) '((right-divider-width . 10) (bottom-divider-width . 10)))
 
+;; @TODO This works but is probably not the idiomatic Doom way, should really modify initial-frame-alist and default-frame-alist
+;; and I don't know the idiomatic way of setting these variables yet.
+(modify-frame-parameters (selected-frame '((undecorated . t))))
 
 ;; Some functionality uses this to identify you, e.g. GPG configuration, email
 ;; clients, file templates and snippets.

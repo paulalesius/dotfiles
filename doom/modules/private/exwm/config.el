@@ -72,7 +72,7 @@
   :config
   (setq
    ;; Screenshot
-   desktop-environment-screenshot-command "flameshot full -p ~/Pictures"
+   desktop-environment-screenshot-command "scrot"
    ;; Pulseaudio
    desktop-environment-volume-set-command "pactl -- set-sink-volume 0 %s"
    desktop-environment-volume-get-command "pactl -- get-sink-volume 0"

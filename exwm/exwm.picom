@@ -101,8 +101,8 @@ backend = "glx";
 mark-wmwin-focused = true;
 mark-ovredir-focused = true;
 # use-ewmh-active-win = true;
-detect-rounded-corners = true;
-detect-client-opacity = true;
+#detect-rounded-corners = true;
+#detect-client-opacity = true;
 #refresh-rate = 144;
 #refresh-rate = 60;
 vsync = true;
@@ -133,8 +133,9 @@ glx-no-stencil = true;
 use-damage = true;
 
 # Rounded corner stuff
-corner-radius = 8;
-round-borders = 1;
+# Disable to see if borders disappear
+#corner-radius = 8;
+#round-borders = 1;
 experimental-backends = true;
 
 
