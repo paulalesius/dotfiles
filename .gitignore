@@ -1,10 +1,18 @@
 /*
+!guix/config.scm
 !.gitignore
 !README.org
 !git
 !doom
 !gtk-3.0/settings.ini
 !transmission/settings.json
-# Allow channels and config file, and allow noname home config dir
-!guix/*.scm
+# Have to first unignore the directory as it is ignored by default
+!guix
+# Then ignore everything inside it
+guix/*
+# Except the specified items:
+!guix/config.scm
+!guix/channels.scm
 !guix/noname
+#!guix/*.scm
+#!guix/noname/
