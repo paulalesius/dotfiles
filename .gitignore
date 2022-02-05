@@ -2,10 +2,9 @@
 !.gitignore
 !README.org
 !git
-!Dharkael
-!alacritty
 !doom
-!exwm
 !gtk-3.0/settings.ini
-!systemd/user/emacs*
 !transmission/settings.json
+# Allow channels and config file, and allow noname home config dir
+!guix/*.scm
+!guix/noname

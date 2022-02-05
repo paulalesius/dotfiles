@@ -26,7 +26,9 @@
 ;;       (add-to-list 'default-frame-alist '(undecorated . t))))
 ;;   But only fullscreen seems to take effect when the emacsclient creates the frame, we still have decoration fringes
 ;; - tried (set-frame-parameter) in init.el, still no effect
-(modify-frame-parameters (selected-frame '((undecorated . t))))
+
+;; Errors out in guix or just gnome?
+;;(modify-frame-parameters (selected-frame '((undecorated . t))))
 
 ;; Some functionality uses this to identify you, e.g. GPG configuration, email
 ;; clients, file templates and snippets.

@@ -6,6 +6,9 @@
   :config
   (add-hook 'exwm-manage-finish-hook #'exwm-firefox-evil-activate-if-firefox))
 
+;; Doesn't work, sqlite database with bookmarks is locked
+;;(use-package! firefox-bookmarks)
+
 ;;(use-package! exwm-firefox
 ;;  :after (exwm-firefox-evil)
 ;;  :config
