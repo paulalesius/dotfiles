@@ -11,7 +11,7 @@
 # Then ignore everything inside it
 guix/*
 # Except the specified items:
-!guix/config.scm
+!guix/system
 !guix/channels.scm
 !guix/noname
 #!guix/*.scm
