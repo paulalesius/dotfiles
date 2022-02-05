@@ -1,5 +1,3 @@
-;; This is an operating system configuration generated
-;; by the graphical installer.
 
 (use-modules (gnu)
 	         (gnu services pm)
@@ -37,13 +35,20 @@ EndSection")
    (kernel-arguments '("quiet"
                        "audit=0"
                        "selinux=0"
-                       "mitigations=off"
+                       ;; Do not disable mitigrations
+                       ;; "mitigations=off"
                        "i915.enable_guc=2"
                        "i915.enable_fbc=1"
                        "i915.enable_dc=1"
                        ;; Required so that we use the IPv4 route through Wireguard
                        ;; until we have a firewall to block non-vpn connections.
                        "ipv6.disable=1"
+                       ;; intel_pstate causes throttling of the CPU with a bad charger, and
+                       ;; refuses to go to Turbo of 4.2Ghz, stays at maybe 1.2Ghz
+                       ;;
+                       ;; By disabling intel_pstate driver, it will resort to the old acpi_cpufreq
+                       ;; driver, that performs cpu scaling in software and consumes more power
+                       ;; but it doesn't throttle automatically with a bad charger.
                        "intel_pstate=disable"
                        ;; Hibernate initramfs hook not implemented in Guix yet, disable for now.
                        ;; see: https://issues.guix.gnu.org/issue/37290
