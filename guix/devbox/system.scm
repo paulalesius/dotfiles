@@ -1,6 +1,8 @@
 
-(use-modules (gnu)
+(use-modules (srfi srfi-1)
+             (gnu)
 	         (gnu services pm)
+             (guix packages)
 	         (gnu packages display-managers)
 	         (nongnu packages linux)
 	         (nongnu system linux-initrd))
@@ -31,9 +33,18 @@ Section \"InputClass\"
 	MatchIsKeyboard \"on\"
 EndSection")
 
+(define linux-devbox
+  (package
+   (inherit linux)
+   (name "linux-devbox")
+   (native-inputs
+    `(("kconfig" ,(local-file "kernel-devbox.conf"))
+      ,@(alist-delete "kconfig" (package-native-inputs linux))))))
+
 (operating-system
    ;; Use a linux kernel since this laptop doesn't support GNU Hurd
-   (kernel linux)
+ ;;(kernel linux)
+ (kernel linux-devbox)
    (kernel-arguments '("quiet"
                        "audit=0"
                        "selinux=0"
