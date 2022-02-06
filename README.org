@@ -1,7 +1,11 @@
-
+* Dotfiles
 So I finally made the switch to GNU Guix, my systems and user configurations will be residing in this repo. Not much to see here, yet.
 
+Will be creating a proper literate config once I settle-in with Guix :}
+
+
 #+BEGIN_COMMENT
+OLD ---
 My idiomatic $HOME/.config aka "dotfiles". It is idiomatic in the sense that everything will be configured where it is meant to be configured. For instance:
 
 - variables for the Emacs daemon in the service file that starts it.
