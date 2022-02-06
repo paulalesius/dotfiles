@@ -107,9 +107,10 @@ EndSection")
                               (handle-lid-switch 'suspend))))))
   (bootloader
     (bootloader-configuration
-      (bootloader grub-efi-bootloader)
-      (targets (list "/boot"))
-      (keyboard-layout keyboard-layout)))
+     (bootloader grub-efi-bootloader)
+     (timeout 0)
+     (targets (list "/boot"))
+     (keyboard-layout keyboard-layout)))
   (mapped-devices
    ;; LUKS2 devices must use PKBDF2 key-derivation function, because grub2 luks2 cryptomount module
    ;; does not support argon2 yet. Cryptsetup can convert the key function from argon2 to PKBDF2
