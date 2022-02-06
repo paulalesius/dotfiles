@@ -47,7 +47,9 @@
                "libvterm"
                "git"
                "firefox"
-               "btrfs-progs")))
+               "btrfs-progs"
+               ;; Use emacs minibuffer for GPG pin entry to gpg-agent
+               "emacs-pinentry")))
   (services
     (list (service
             home-bash-service-type

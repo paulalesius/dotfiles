@@ -83,7 +83,6 @@ EndSection")
             (specification->package "nss-certs")
 	    (specification->package "wireguard-tools")
 	    (specification->package "xf86-input-libinput")
-	    (specification->package "vim")
 	    (specification->package "tlp"))
       %base-packages))
   (services
