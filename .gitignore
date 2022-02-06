@@ -1,5 +1,4 @@
 /*
-!guix/config.scm
 !.gitignore
 !README.org
 !git
@@ -11,8 +10,7 @@
 # Then ignore everything inside it
 guix/*
 # Except the specified items:
-!guix/system
+!guix/devbox
 !guix/channels.scm
-!guix/noname
 #!guix/*.scm
 #!guix/noname/
