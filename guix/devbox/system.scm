@@ -63,7 +63,7 @@ EndSection")
            (inherit linux)
            (name "linux-nonfree")
    (native-inputs
-    `(("kconfig" ,(local-file (string-append "kernel-" (version-major+minor version) ".config")   ))
+    `(("kconfig" ,(local-file (string-append "kernel-" (version-major+minor kernel-version) ".config")   ))
        ,@(alist-delete "kconfig" (package-native-inputs linux))))))
 
   (kernel-arguments '("quiet"
@@ -136,7 +136,7 @@ EndSection")
 	(service thermald-service-type))
     (modify-services %desktop-services
             (elogind-service-type
-                c => (elogind-configuration
+                config => (elogind-configuration
                               ;; change to 'hibernate once hibernate is implemented in Guix initramfs
                               ;; see kernel param
                       (handle-lid-switch 'suspend)))
@@ -145,7 +145,12 @@ EndSection")
                                (inherit config)
                                (default-user "noname")
                                ;; (auto-login? #t) ; claims to break GDM, test it later https://notabug.org/Ambrevar/dotfiles/src/master/.config/guix/system/desktop-fafafa.scm
-                               )))))
+                               ))
+            (guix-service-type config =>
+                               (guix-configuration
+                                (inherit config)
+                                (tmpdir "/var/tmp")))
+            )))
   (bootloader
     (bootloader-configuration
      (bootloader grub-efi-bootloader)
@@ -193,7 +198,7 @@ EndSection")
              (mount-point "/boot")
              (device (uuid "7504-519B" 'fat32))
              (type "vfat"))
-   (file-system
+  (file-system
     (mount-point "/tmp")
     (device "none")
     (type "tmpfs")
