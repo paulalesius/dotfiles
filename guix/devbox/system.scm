@@ -3,7 +3,11 @@
              (gnu)
 	         (gnu services pm)
              (guix packages)
+             (guix download)
+             (guix git-download)
+             (guix utils)
 	         (gnu packages display-managers)
+             (gnu packages linux)
 	         (nongnu packages linux)
 	         (nongnu system linux-initrd))
 (use-service-modules
@@ -33,19 +37,36 @@ Section \"InputClass\"
 	MatchIsKeyboard \"on\"
 EndSection")
 
-(define linux-devbox
-  (package
-   (inherit linux)
-   (name "linux-devbox")
-   (native-inputs
-    `(("kconfig" ,(local-file "kernel-devbox.conf"))
-      ,@(alist-delete "kconfig" (package-native-inputs linux))))))
+(define kernel-version
+  "5.16.7")
+
+(define kernel-hash
+  "1kd6v31z9rylnpyrv6b3i622ismxbiv165dcjh2fn5aliqzgalap")
+
+;; This method is overridden from gnu/packages/linux to change the URL
+(define (linux-urls version)
+  "Return a list of URLS for Linux VERSION."
+  (list (string-append "https://www.kernel.org/pub/linux/kernel/v"
+                       (version-major version) ".x/linux-" version ".tar.xz")))
+
+;; Override to the latest minor version and source hash (guix hash)
+(define-public linux-5.16
+    (corrupt-linux linux-libre-5.16 kernel-version kernel-hash))
+
+;; Overrides framework version that defaults to linux-5.15
+(define-public linux linux-5.16)
 
 (operating-system
-   ;; Use a linux kernel since this laptop doesn't support GNU Hurd
- ;;(kernel linux)
- (kernel linux-devbox)
-   (kernel-arguments '("quiet"
+  ;; Use a linux kernel since this laptop doesn't support GNU Hurd
+  ;; (kernel linux)
+  (kernel (package
+           (inherit linux)
+           (name "linux-nonfree")
+   (native-inputs
+    `(("kconfig" ,(local-file (string-append "kernel-" (version-major+minor version) ".config")   ))
+       ,@(alist-delete "kconfig" (package-native-inputs linux))))))
+
+  (kernel-arguments '("quiet"
                        "audit=0"
                        "selinux=0"
                        ;; Do not disable mitigrations
@@ -68,7 +89,8 @@ EndSection")
                        ;;"resume=/dev/nvme0n1p3"
                        ))
   (initrd microcode-initrd)
-  (firmware (list linux-firmware sof-firmware))
+  (initrd-modules (delete "framebuffer_coreboot" %base-initrd-modules))
+  (firmware (list linux-firmware sof-firmware iwlwifi-firmware))
   (locale "en_US.utf8")
   (timezone "Europe/Stockholm")
   (keyboard-layout (keyboard-layout "se"))

@@ -36,6 +36,7 @@
                "rsync"
                "cryptsetup"
                "brightnessctl"
+               ;; The fonts I use in emacs
                "font-fira-code"
                "font-fira-mono"
                "gcc-toolchain"
@@ -57,7 +58,10 @@
               (aliases
                '(("ec" . "emacsclient")))
               (environment-variables
-               '(("_JAVA_AWT_WM_NONREPARENTING" . "1")))
+               '(
+                 ;; Default editor for when the system edits a file, such as guix edit <pkg> or visudo etc.
+                 ("EDITOR" . "emacsclient")
+                 ("_JAVA_AWT_WM_NONREPARENTING" . "1")))
               ;; When adding the (bashrc) element, it will include the contents
               ;; of provided file into bashrc, in addition to the default bashrc,
               ;; this may lead to duplicate content in bashrc, so don't include
