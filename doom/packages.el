@@ -1,5 +1,4 @@
-;; -*- no-byte-compile: t; -*-
-;;; $DOOMDIR/packages.el
+;; $DOOMDIR/packages.el -*- no-byte-compile: t -*-
 
 ;; To install a package with Doom you must declare them here and run 'doom sync'
 ;; on the command line, then restart Emacs for the changes to take effect -- or
@@ -69,3 +68,5 @@
 ;; Fix bug where Doom Emacs pins to the wrong commit in the wrong repo
 ;;(package! dired-git-info
 ;;  :pin "9461476a28a5fec0784260f6e318237c662c3430")
+
+;;(package! emacs-guix)

@@ -1,3 +1,4 @@
+;; -*- Scheme -*-
 
 (use-modules (srfi srfi-1)
              (gnu)
@@ -63,7 +64,7 @@ EndSection")
            (inherit linux)
            (name "linux-nonfree")
    (native-inputs
-    `(("kconfig" ,(local-file (string-append "kernel-" (version-major+minor kernel-version) ".config")   ))
+    `(("kconfig" ,(local-file (string-append (dirname (current-filename)) "/kernel-" (version-major+minor kernel-version) ".config")   ))
        ,@(alist-delete "kconfig" (package-native-inputs linux))))))
 
   (kernel-arguments '("quiet"
@@ -113,8 +114,8 @@ EndSection")
     (append
       (list (specification->package "emacs")
             (specification->package "emacs-exwm")
-            (specification->package
-              "emacs-desktop-environment")
+            (specification->package "emacs-desktop-environment")
+            (specification->package "emacs-guix")
             (specification->package "nss-certs")
 	    (specification->package "wireguard-tools")
 	    (specification->package "xf86-input-libinput")
