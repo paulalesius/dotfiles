@@ -5,16 +5,19 @@
 ;; See the "Replicating Guix" section in the manual.
 
 (use-modules
-  (gnu home)
+ (gnu home)
   (gnu packages)
   (gnu services)
   (guix gexp)
+  (gnu home services desktop)
   (gnu home services shells))
 
 (home-environment
   (packages
     (map (compose list specification->package+output)
          (list "wmctrl"
+               "rust"
+               "rust-cargo"
                "x265"
                "ffmpeg"
                "gnupg"
@@ -51,8 +54,15 @@
                ;; Use emacs minibuffer for GPG pin entry to gpg-agent
                "emacs-pinentry")))
   (services
-    (list (service
-            home-bash-service-type
+   (list
+    ;; Activate redshift and set geolocation to "Malmö, Sweden"
+    ;; Doc: https://guix.gnu.org/en/manual/devel/en/html_node/Desktop-Home-Services.html
+    (service home-redshift-service-type
+             (home-redshift-configuration
+              (location-provider 'manual)
+              (latitude 55.604980)
+              (longitude 13.003822)))
+    (service home-bash-service-type
             (home-bash-configuration
              ;; Setting aliases generates .bashrc once with default script
               (aliases
@@ -61,7 +71,8 @@
                '(
                  ;; Default editor for when the system edits a file, such as guix edit <pkg> or visudo etc.
                  ("EDITOR" . "emacsclient")
-                 ("_JAVA_AWT_WM_NONREPARENTING" . "1")))
+                 ("_JAVA_AWT_WM_NONREPARENTING" . "1")
+                 ))
               ;; When adding the (bashrc) element, it will include the contents
               ;; of provided file into bashrc, in addition to the default bashrc,
               ;; this may lead to duplicate content in bashrc, so don't include
