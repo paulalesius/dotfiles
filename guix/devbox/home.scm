@@ -63,12 +63,14 @@
               (latitude 55.604980)
               (longitude 13.003822)))
     (service home-bash-service-type
+            ;; https://guix-devel.gnu.narkive.com/FdpI8yev/patch-home-guix-profile-considered-harmful
             (home-bash-configuration
              ;; Setting aliases generates .bashrc once with default script
               (aliases
                '(("ec" . "emacsclient")))
               (environment-variables
                '(
+                 ("PATH" . "$PATH:$HOME/.cargo/bin")
                  ;; Default editor for when the system edits a file, such as guix edit <pkg> or visudo etc.
                  ("EDITOR" . "emacsclient")
                  ("_JAVA_AWT_WM_NONREPARENTING" . "1")
