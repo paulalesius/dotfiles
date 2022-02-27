@@ -5,7 +5,7 @@
  (srfi srfi-1)
  (gnu)
  (gnu services pm)
- (guix packages)
+  (guix packages)
  (guix download)
  (guix git-download)
  (guix utils)
@@ -13,7 +13,7 @@
  (gnu packages linux)
  (nongnu packages linux)
  (nongnu system linux-initrd))
-(use-service-modules
+    (use-service-modules
  desktop    ;; GNOME-based desktop services, gdm, NetworkManager, etc.
  networking ;; ??
  ssh        ;; ??
@@ -41,10 +41,10 @@ Section \"InputClass\"
 EndSection")
 
 (define kernel-version
-  "5.16.10")
+  "5.16.11")
 
 (define kernel-hash
-  "17i3j07hgljsiz2kymbskp35p2xp14gb0mdi5s2r61c0h406yk8c")
+  "08xhm3ngg9157r69v44akp6cj73g33l6wa7073s4sjn4lic6263d")
 
 ;; This method is overridden from gnu/packages/linux to change the URL
 (define

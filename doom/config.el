@@ -157,8 +157,8 @@
 
 ;; Make links clickable in terminals, and kill buffer once the terminal exists.
 (use-package! vterm
-  ;;:hook
-  ;;(vterm-mode . goto-address-mode)
+  :hook
+  (vterm-mode . goto-address-mode)
   :custom
   (vterm-kill-buffer-on-exit t))
 

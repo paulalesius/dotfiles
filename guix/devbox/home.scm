@@ -10,7 +10,8 @@
   (gnu services)
   (guix gexp)
   (gnu home services desktop)
-  (gnu home services shells))
+  (gnu home services shells)
+  (gnu services sound))
 
 (home-environment
   (packages
