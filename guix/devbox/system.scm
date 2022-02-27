@@ -192,7 +192,13 @@ EndSection")
    ;; does not support argon2 yet. Cryptsetup can convert the key function from argon2 to PKBDF2
    ;;
    ;; Set a low iteration count because the GRUB2 pbkdf2 implementation is extremely slow
-   ;; cryptsetup luksFormat --iter-time 500 --hash 256 --key-size 256 --sector-size 4096 ...
+   ;; cryptsetup luksFormat --type luks2
+   ;;                       --pbkdf pbkdf2
+   ;;                       --iter-time 500
+   ;;                       --hash 256
+   ;;                       --key-size 256
+   ;;                       --sector-size 4096 # Use 4K sectors
+   ;;                       ...
    (list
     (mapped-device
      (source
