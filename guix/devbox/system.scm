@@ -5,15 +5,20 @@
  (srfi srfi-1)
  (gnu)
  (gnu services pm)
-  (guix packages)
+ (gnu services)
+ (gnu services shepherd)
+ (guix packages)
  (guix download)
  (guix git-download)
  (guix utils)
  (gnu packages display-managers)
  (gnu packages linux)
+ (gnu system)
  (nongnu packages linux)
- (nongnu system linux-initrd))
-    (use-service-modules
+ (nongnu system linux-initrd)
+ )
+
+(use-service-modules
  desktop    ;; GNOME-based desktop services, gdm, NetworkManager, etc.
  networking ;; ??
  ssh        ;; ??
@@ -39,6 +44,24 @@ Section \"InputClass\"
 	Driver \"libinput\"
 	MatchIsKeyboard \"on\"
 EndSection")
+
+ (define (my-services)
+     (append
+    (list
+     (service gnome-desktop-service-type)
+     (set-xorg-configuration
+      (xorg-configuration
+       (drivers '("modesetting"))
+       (keyboard-layout keyboard-layout)
+       (extra-config
+        (list %xorg-libinput-config))))
+     (service tlp-service-type
+        (tlp-configuration
+         (cpu-boost-on-ac? #t)
+         (wifi-pwr-on-bat? #t)))
+     (service nftables-service-type))
+    ))
+   
 
 (define kernel-version
   "5.16.11")
@@ -146,39 +169,48 @@ EndSection")
      (service gnome-desktop-service-type)
      (set-xorg-configuration
       (xorg-configuration
-       (drivers
-        '("modesetting"))
+       (drivers '("modesetting"))
        (keyboard-layout keyboard-layout)
        (extra-config
-        (list
-	     %xorg-libinput-config))))
+        (list %xorg-libinput-config))))
      (service tlp-service-type
-              (tlp-configuration
-               (cpu-boost-on-ac? #t)
-               (wifi-pwr-on-bat? #t)))
+        (tlp-configuration
+         (cpu-boost-on-ac? #t)
+         (wifi-pwr-on-bat? #t)))
+     (service nftables-service-type
+        (nftables-configuration
+         (ruleset (local-file (string-append (dirname (current-filename)) "/nftables.conf"))))))
      ;; Build failure, add once thermald is updated
      ;; src/thd_engine_adaptive.cpp:1002:61: error: ‘gboolean up_client_get_lid_is_closed(UpClient*)’ is deprecated [-Werror=deprecated-declarations]
      ;; 1002 |  bool lid_closed = up_client_get_lid_is_closed(upower_client);
 	 ;;(service thermald-service-type)
-     )
     (modify-services %desktop-services
-      (elogind-service-type
-       config =>
-       (elogind-configuration
+        ;;(filter
+        ;;   (lambda (service)
+        ;;     (cond
+        ;;      ((string= (symbol->string (service-type-name (service-kind service))) "sane") #false)
+        ;;      ((string= (symbol->string (service-type-name (service-kind service))) "mount-setuid-helpers") #false)
+        ;;      ((string= (symbol->string (service-type-name (service-kind service))) "network-manager-applet") #false)
+        ;;      ((string= (symbol->string (service-type-name (service-kind service))) "modem-manager") #false)
+        ;;      ((string= (symbol->string (service-type-name (service-kind service))) "avahi") #false)
+        ;;      ((string= (symbol->string (service-type-name (service-kind service))) "accountsservice") #false)
+        ;;      ((string= (symbol->string (service-type-name (service-kind service))) "cups-pk-helper") #false)
+        ;;      ((string= (symbol->string (service-type-name (service-kind service))) "geoclue") #false)
+        ;;      (else #true)
+        ;;      ))
+        ;;   %desktop-services)
+      (elogind-service-type config =>
+        (elogind-configuration
         ;; change to 'hibernate once hibernate is implemented in Guix initramfs
         ;; see kernel param
         (handle-lid-switch 'suspend)))
       (gdm-service-type config =>
-                        (gdm-configuration
-                         (inherit config)
-                         (default-user "noname")
-                         ;; (auto-login? #t) ; claims to break GDM, test it later https://notabug.org/Ambrevar/dotfiles/src/master/.config/guix/system/desktop-fafafa.scm
-                         ))
+        (gdm-configuration (inherit config)
+        (default-user "noname")))
+        ;; (auto-login? #t) ; claims to break GDM, test it later https://notabug.org/Ambrevar/dotfiles/src/master/.config/guix/system/desktop-fafafa.scm
       (guix-service-type config =>
-                         (guix-configuration
-                          (inherit config)
-                          (tmpdir "/var/tmp")))
-      )))
+        (guix-configuration (inherit config)
+                            (tmpdir "/var/tmp"))))))
   (bootloader
    (bootloader-configuration
     (bootloader grub-efi-bootloader)
@@ -201,8 +233,7 @@ EndSection")
    ;;                       ...
    (list
     (mapped-device
-     (source
-      (uuid "21db4581-dd6c-4180-9325-f1d9e9f99c5d"))
+     (source (uuid "21db4581-dd6c-4180-9325-f1d9e9f99c5d"))
      (target "storage")
      (type luks-device-mapping))))
   (file-systems
@@ -210,8 +241,7 @@ EndSection")
     (file-system
       (mount-point "/")
       (device "/dev/mapper/storage")
-      (flags
-       '(no-atime))
+      (flags '(no-atime))
       (options "subvol=guix-root,compress=zstd")
       (type "btrfs")
       (dependencies mapped-devices))
@@ -255,6 +285,4 @@ EndSection")
    (list
     (swap-space
      (target "/swap/swapfile")
-     (dependencies file-systems)
-     )))
-  )
+     (dependencies file-systems)))))

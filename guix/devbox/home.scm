@@ -53,7 +53,10 @@
                "firefox"
                "btrfs-progs"
                ;; Use emacs minibuffer for GPG pin entry to gpg-agent
-               "emacs-pinentry")))
+               "emacs-pinentry"
+               "guile-colorized"
+               "guile-readline"
+               )))
   (services
    (list
     ;; Activate redshift and set geolocation to "Malmö, Sweden"
