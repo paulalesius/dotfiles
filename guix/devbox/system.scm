@@ -64,10 +64,12 @@ EndSection")
    
 
 (define kernel-version
-  "5.16.11")
+  "5.16.12")
 
+;; To download and print the has:
+;; guix download <url to .tar.xz form kernel.org
 (define kernel-hash
-  "08xhm3ngg9157r69v44akp6cj73g33l6wa7073s4sjn4lic6263d")
+  "1wnpn5w0rfniy60m2a25wjm3flvpzvs2z1s4ga01b9qhbbqisnmv")
 
 ;; This method is overridden from gnu/packages/linux to change the URL
 (define
@@ -185,6 +187,8 @@ EndSection")
      ;; 1002 |  bool lid_closed = up_client_get_lid_is_closed(upower_client);
 	 ;;(service thermald-service-type)
     (modify-services %desktop-services
+        ;; This destroys my desktop and gdm doesn't start for me. I don't understand how dependencies are included
+        ;; and excluded.
         ;;(filter
         ;;   (lambda (service)
         ;;     (cond
