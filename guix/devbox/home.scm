@@ -11,13 +11,15 @@
   (guix gexp)
   (gnu home services desktop)
   (gnu home services shells)
-  (gnu services sound))
+  (gnu services sound)
+  (gnu packages rust))
 
 (home-environment
-  (packages
+ (packages
     (map (compose list specification->package+output)
          (list "wmctrl"
                "rust"
+               "rust:rustfmt" ;; Another output of rust
                "rust-cargo"
                "x265"
                "ffmpeg"
@@ -77,6 +79,8 @@
                  ("PATH" . "$PATH:$HOME/.cargo/bin")
                  ;; Default editor for when the system edits a file, such as guix edit <pkg> or visudo etc.
                  ("EDITOR" . "emacsclient")
+                 ;; Where to find package definitions for guix edit and guix package
+                 ("GUIX_PACKAGE_PATH" . "$XDG_CONFIG_HOME/guix/packages")
                  ("_JAVA_AWT_WM_NONREPARENTING" . "1")
                  ))
               ;; When adding the (bashrc) element, it will include the contents
