@@ -12,5 +12,6 @@ guix/*
 # Except the specified items:
 !guix/devbox
 !guix/channels.scm
+!guix/packages
 #!guix/*.scm
 #!guix/noname/

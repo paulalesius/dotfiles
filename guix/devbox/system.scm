@@ -15,8 +15,7 @@
  (gnu packages linux)
  (gnu system)
  (nongnu packages linux)
- (nongnu system linux-initrd)
- )
+ (nongnu system linux-initrd))
 
 (use-service-modules
  desktop    ;; GNOME-based desktop services, gdm, NetworkManager, etc.
@@ -26,6 +25,30 @@
  vpn        ;; wireguard??
  )
 (use-package-modules certs)
+
+(define kernel-version
+  "5.16.13")
+
+;; To download and print the has:
+;; guix download <url to .tar.xz form kernel.org
+(define kernel-hash
+  "1fvz4v3mcm9yxfak6mshl764piadgz46y71wprb85b1shc09i2ig")
+
+;; This method is overridden from gnu/packages/linux to change the URL
+(define
+  (linux-urls version)
+  "Return a list of URLS for Linux VERSION."
+  (list
+   (string-append "https://www.kernel.org/pub/linux/kernel/v"
+                  (version-major version)
+                  ".x/linux-" version ".tar.xz")))
+
+;; Override to the latest minor version and source hash (guix hash)
+(define-public linux-5.16
+  (corrupt-linux linux-libre-5.16 kernel-version kernel-hash))
+
+;; Overrides framework version that defaults to linux-5.15
+(define-public linux linux-5.16)
 
 (define %xorg-libinput-config
   "Section \"InputClass\"
@@ -59,34 +82,8 @@ EndSection")
         (tlp-configuration
          (cpu-boost-on-ac? #t)
          (wifi-pwr-on-bat? #t)))
-     (service nftables-service-type))
-    ))
+     (service nftables-service-type))))
    
-
-(define kernel-version
-  "5.16.12")
-
-;; To download and print the has:
-;; guix download <url to .tar.xz form kernel.org
-(define kernel-hash
-  "1wnpn5w0rfniy60m2a25wjm3flvpzvs2z1s4ga01b9qhbbqisnmv")
-
-;; This method is overridden from gnu/packages/linux to change the URL
-(define
-  (linux-urls version)
-  "Return a list of URLS for Linux VERSION."
-  (list
-   (string-append "https://www.kernel.org/pub/linux/kernel/v"
-                  (version-major version)
-                  ".x/linux-" version ".tar.xz")))
-
-;; Override to the latest minor version and source hash (guix hash)
-(define-public linux-5.16
-  (corrupt-linux linux-libre-5.16 kernel-version kernel-hash))
-
-;; Overrides framework version that defaults to linux-5.15
-(define-public linux linux-5.16)
-
 (operating-system
   ;; Use a linux kernel since this laptop doesn't support GNU Hurd
   ;; (kernel linux)
@@ -155,16 +152,35 @@ EndSection")
     %base-user-accounts))
   (packages
    (append
-    (list
-     (specification->package "emacs")
-     (specification->package "emacs-exwm")
-     (specification->package "emacs-desktop-environment")
-     (specification->package "emacs-guix")
-     (specification->package "nss-certs")
-     (specification->package "wireguard-tools")
-     (specification->package "xf86-input-libinput")
-     (specification->package "tlp"))
-    %base-packages))
+   (map (compose list specification->package+output)
+        (list ;;"emacs-pgtk-native-comp"
+              "emacs"
+              "emacs-exwm"
+              ;;"emacs-desktop-environment"
+              ;;"emacs-guix"
+              ;;"emacs-pinentry"
+              ;;"guile-colorized"
+              ;;"guile-readline"
+              "nss-certs"
+              "wireguard-tools"
+              "cryptsetup"
+              "btrfs-progs"
+              "brightnessctl"
+              "xf86-input-libinput"
+              "tlp"))
+   %base-packages))
+   ;;(append
+   ;; (list
+     ;;(specification->package "emacs")
+   ;;  (specification->package "emacs-pgtk-native-comp")
+   ;;  (specification->package "emacs-exwm")
+   ;;  (specification->package "emacs-desktop-environment")
+   ;;  (specification->package "emacs-guix")
+   ;;  (specification->package "nss-certs")
+   ;;  (specification->package "wireguard-tools")
+   ;;  (specification->package "xf86-input-libinput")
+   ;;  (specification->package "tlp"))
+   ;; %base-packages))
   (services
    (append
     (list

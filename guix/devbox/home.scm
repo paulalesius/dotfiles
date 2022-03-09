@@ -40,8 +40,6 @@
                "markdown"
                "fd"
                "rsync"
-               "cryptsetup"
-               "brightnessctl"
                ;; The fonts I use in emacs
                "font-fira-code"
                "font-fira-mono"
@@ -52,13 +50,7 @@
                "ripgrep"
                "libvterm"
                "git"
-               "firefox"
-               "btrfs-progs"
-               ;; Use emacs minibuffer for GPG pin entry to gpg-agent
-               "emacs-pinentry"
-               "guile-colorized"
-               "guile-readline"
-               )))
+               "firefox")))
   (services
    (list
     ;; Activate redshift and set geolocation to "Malmö, Sweden"
