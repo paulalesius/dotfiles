@@ -157,7 +157,7 @@ EndSection")
               "emacs"
               "emacs-exwm"
               ;;"emacs-desktop-environment"
-              ;;"emacs-guix"
+              "emacs-guix"
               ;;"emacs-pinentry"
               ;;"guile-colorized"
               ;;"guile-readline"

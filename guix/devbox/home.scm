@@ -90,8 +90,8 @@
               ;;  This doesn't seem to work
               (bash-profile
                (list (local-file "/home/noname/.guix-home/profile/etc/profile")))
-              (bashrc
-               (list (local-file "/home/noname/.guix-home/profile/etc/profile")))
+              ;;(bashrc
+              ;;(list (local-file "/home/noname/.guix-home/profile/etc/profile")))
               ;;(bash-profile '("\
               ;;export HISTFILE=$XDG_CACHE_HOME/.bash_history"))
               ;;  This does seem to work
