@@ -162,7 +162,7 @@
        ;;scala             ; java, but good
        ;; Disable the scheme module and use the guix-provided emacs-guix, that seems to pull scheme mode and geiser
        ;; Integrate relevant doom config.
-       ;;(scheme +guile)   ; a fully conniving family of lisps
+       (scheme +guile)   ; a fully conniving family of lisps
        (sh +lsp)                ; she sells {ba,z,fi}sh shells on the C xor
        ;;sml
        ;;solidity          ; do you need a blockchain? No.

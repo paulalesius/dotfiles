@@ -1,9 +1,12 @@
-;; -*- Scheme -*-
+;; -*- geiser-scheme-implementation: guile -*-
 ;; use (guix-scheme-mode) to indent lol!
 
 (use-modules
  (srfi srfi-1)
  (gnu)
+ (gnu system)
+ (gnu packages linux)
+ (gnu packages display-managers)
  (gnu services pm)
  (gnu services)
  (gnu services shepherd)
@@ -11,9 +14,6 @@
  (guix download)
  (guix git-download)
  (guix utils)
- (gnu packages display-managers)
- (gnu packages linux)
- (gnu system)
  (nongnu packages linux)
  (nongnu system linux-initrd))
 

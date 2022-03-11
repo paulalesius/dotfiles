@@ -15,7 +15,8 @@
  (gnu services base)
  (gnu services desktop)
  (gnu packages emacs)
- (gnu packages emacs-xyz))
+ (gnu packages emacs-xyz)
+ (ice-9 ports))
 
 (use-service-modules desktop)
 
