@@ -27,12 +27,12 @@
 (use-package-modules certs)
 
 (define kernel-version
-  "5.16.13")
+  "5.16.14")
 
 ;; To download and print the has:
 ;; guix download <url to .tar.xz form kernel.org
 (define kernel-hash
-  "1fvz4v3mcm9yxfak6mshl764piadgz46y71wprb85b1shc09i2ig")
+  "1xkl0mfjby7w6r3fqyjds94h2lmc77nzp970w7wz1rfmb63ab2vs")
 
 ;; This method is overridden from gnu/packages/linux to change the URL
 (define

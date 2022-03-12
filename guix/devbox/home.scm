@@ -44,7 +44,8 @@
                "libvterm"
                "git"
                "firefox"
-               "gimp")))
+               "gimp"
+               "python")))
   (services
    (list
     ;; Activate redshift and set geolocation to "Malmö, Sweden"
@@ -63,7 +64,7 @@
                '(("ec" . "emacsclient")))
               (environment-variables
                '(
-                 ("PATH" . "$PATH:$HOME/.cargo/bin")
+                 ("PATH" . "$PATH:$HOME/.cargo/bin:$HOME/.local/bin")
                  ;; Default editor for when the system edits a file, such as guix edit <pkg> or visudo etc.
                  ("EDITOR" . "emacsclient")
 
@@ -101,11 +102,11 @@
               ))
      (service home-xdg-user-directories-service-type
             (home-xdg-user-directories-configuration
-             (desktop     "$HOME/desktop")
-             (documents   "$HOME/documents")
+             (desktop     "$HOME") ;; Not relevant
+             (documents   "/storage/media/documents")
              (download    "/storage/media/downloads")
-             (music       "$HOME/music")
-             (pictures    "$HOME/pictures")
-             (publicshare "$HOME/public")
-             (templates   "$HOME/templates")
-             (videos      "$HOME/videos"))))))
+             (music       "/storage/media/audio")
+             (pictures    "/storage/media/pictures")
+             (publicshare "/storage/media/public") ;; Just not the home dir in case anything is accidentally shared
+             (templates   "$HOME") ;; Not relevant
+             (videos      "/storage/media/videos"))))))
