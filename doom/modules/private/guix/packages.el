@@ -2,6 +2,8 @@
 ;;(package! emacs-guix
 ;;  :recipe (:host gitlab :repo "emacs-guix/emacs-guix"))
 
+;; Not in MELPA
+;;(package! emacs-guix)
 
 ;; Installed by the emacs module
 ;;(package! geiser-guile)

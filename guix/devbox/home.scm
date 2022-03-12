@@ -5,6 +5,7 @@
 ;; See the "Replicating Guix" section in the manual.
 
 (use-modules
+  (srfi srfi-1)
   (gnu)
   (gnu home)
   (gnu packages)
@@ -18,13 +19,18 @@
   (gnu home services)
   (gnu home services xdg))
 
-;;(use-package-modules rust)
+(use-package-modules rust)
 
 ;; This is the $HOME/.guix-home profile
 (home-environment
 
  ;; These packages are found through $HOME/.guix-home/profile, so activate access to it in bash profile.
  (packages
+  (cons*
+    ;; Append an additional output of rust
+    ;; Adding "rust:rustfmt" to the specifications, seems to replace the original rust:out,
+    ;; so add it this way instead.
+    (list rust "rustfmt")
     (map (compose list specification->package+output)
          (list "x265"
                "ffmpeg"
@@ -45,7 +51,15 @@
                "git"
                "firefox"
                "gimp"
-               "python")))
+               "python"
+               "rust"
+               ;;"rust:rustfmt"
+               "rust-cargo"
+               "rust-analyzer"
+               "cmake"
+               "make"
+               "gcc-toolchain"
+               "markdown"))))
   (services
    (list
     ;; Activate redshift and set geolocation to "Malmö, Sweden"
@@ -64,7 +78,9 @@
                '(("ec" . "emacsclient")))
               (environment-variables
                '(
-                 ("PATH" . "$PATH:$HOME/.cargo/bin:$HOME/.local/bin")
+                 ;; Add cargo bin to path
+                 ;; Add pip3 bin to path
+                 ("PATH" . "${PATH}:$HOME/.cargo/bin:$HOME/.local/bin")
                  ;; Default editor for when the system edits a file, such as guix edit <pkg> or visudo etc.
                  ("EDITOR" . "emacsclient")
 
@@ -75,8 +91,11 @@
                  ("GUIX_PACKAGE_PATH" . "$XDG_CONFIG_HOME/guix/packages")
 
                  ;; Set guix-home as the profile so we manage it with this config only
-                 ("GUIX_PROFILE" . "$HOME/.guix-home/profile")
-                 ("LD_LIBRARY_PATH" . "$LD_LIBRARY_PATH:$GUIX_PROFILE/lib")
+                 ;; Also add the LD load path from the guix-home profile
+                 ;; I don't believe this is necessary?
+                 ;;("GUIX_PROFILE" . "$HOME/.guix-home/profile")
+                 ("LD_LIBRARY_PATH" . "$GUIX_PROFILE/lib")
+
 
                  ("_JAVA_AWT_WM_NONREPARENTING" . "1")))
               ;; When adding the (bashrc) element, it will include the contents
@@ -86,11 +105,11 @@
               ;;(bashrc
               ;; (list (local-file "bash.bashrc")))
               ;;  (list (local-file "home/.bashrc" "bashrc")))
-              ;;  It already has a default bash_profile, there's no need to re-include
-              ;;  an addition bash_profile initialization logic other than customization.
-              ;;  This doesn't seem to work
-              (bash-profile
-               (list (local-file "/home/noname/.guix-home/profile/etc/profile")))
+              ;;
+              ;; The guix-home profile file should already be sourced through $HOME/.profile
+              ;; which is read from $HOME/.bash_profile
+              ;;(bash-profile
+              ;; (list (local-file "/home/noname/.guix-home/profile/etc/profile")))
               ;;(bashrc
               ;;(list (local-file "/home/noname/.guix-home/profile/etc/profile")))
               ;;(bash-profile '("\
