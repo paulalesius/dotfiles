@@ -49,6 +49,7 @@
                "ripgrep"
                "libvterm"
                "git"
+               "git-remote-gcrypt" ;; For encrypted git repos
                "firefox"
                "gimp"
                "python"
