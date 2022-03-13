@@ -60,7 +60,8 @@
                "cmake"
                "make"
                "gcc-toolchain"
-               "markdown"))))
+               "markdown"
+               "xrandr"))))
   (services
    (list
     ;; Activate redshift and set geolocation to "Malmö, Sweden"
