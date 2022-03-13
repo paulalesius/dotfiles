@@ -7,9 +7,9 @@
  (gnu system)
  (gnu packages linux)
  (gnu packages display-managers)
- (gnu services pm)
+ ;;(gnu services pm)
  (gnu services)
- (gnu services shepherd)
+ ;;(gnu services shepherd)
  (guix packages)
  (guix download)
  (guix git-download)
@@ -23,8 +23,10 @@
  ssh        ;; ??
  xorg       ;; Included in desktop? Probably for emacs
  vpn        ;; wireguard??
+ pm
+ shepherd
  )
-(use-package-modules certs)
+(use-package-modules certs xdisorg)
 
 (define kernel-version
   "5.16.14")
@@ -191,6 +193,7 @@ EndSection")
        (keyboard-layout keyboard-layout)
        (extra-config
         (list %xorg-libinput-config))))
+     (screen-locker-service xlockmore "xlock")
      (service tlp-service-type
         (tlp-configuration
          (cpu-boost-on-ac? #t)
