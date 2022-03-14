@@ -1,7 +1,8 @@
-(define-module (unnsvc exwm)
+(define-module (unnsvc emacs)
   #:use-module ((guix licenses) #:prefix license:)
   #:use-module (guix packages)
   #:use-module (guix download)
+  #:use-module (guix git-download)
   #:use-module (guix build-system emacs)
   #:use-module (gnu packages xorg)
   #:use-module (gnu packages emacs)
@@ -19,6 +20,11 @@
        (method url-fetch)
        (uri (string-append "https://elpa.gnu.org/packages/"
                            "exwm-" version ".tar"))
+       ;; Doesn't work, dependencies couldn't be built using git. Evaluate at a later time.
+       ;;(method git-fetch)
+       ;;(uri (git-reference
+       ;;      (url "https://github.com/ch11ng/exwm.git")
+       ;;      (commit "563cba2abcfe1df6ed433dc09f6ef412a8e2c706")))
        (sha256
         (base32 "03pg0r8a5vb1wc5grmjgzql74p47fniv47x39gdll5s3cq0haf6q"))))
     (build-system emacs-build-system)

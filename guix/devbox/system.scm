@@ -126,6 +126,12 @@ EndSection")
      ;; Hibernate initramfs hook not implemented in Guix yet, disable for now.
      ;; see: https://issues.guix.gnu.org/issue/37290
      ;;"resume=/dev/nvme0n1p3"
+
+     ;; boot fails to find UUID, loop on "waiting for partition with UUID" during boot.
+     ;; sudo findmnt -no UUID -T /swap/swapfile
+     ;;"resume=UUID=21db4581-dd6c-4180-9325-f1d9e9f99c5d"
+     ;; sudo filefrag -v /swap/swapfile, first column of physical_offset
+     ;;"resume_offset=29106289"
      ))
   (initrd microcode-initrd)
   (initrd-modules
