@@ -1,8 +1,10 @@
 * Dotfiles
-So I finally made the switch to GNU Guix, my systems and user configurations will be residing in this repo. Not much to see here, yet.
+My GuixSD/Emacs configuration.
 
-Will be creating a proper literate config once I settle-in with Guix :}
+Looks great, works great, and is a lot of fun! 👌
 
+#+CAPTION: Screenshot
+[[./README.org]]
 
 #+BEGIN_COMMENT
 OLD ---
