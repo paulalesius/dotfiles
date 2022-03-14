@@ -4,7 +4,7 @@ My GuixSD/Emacs configuration.
 Looks great, works great, and is a lot of fun! 👌
 
 #+CAPTION: Screenshot
-[[./README.org]]
+[[./README.png]]
 
 #+BEGIN_COMMENT
 OLD ---
