@@ -45,6 +45,7 @@
                ;; The fonts I use in emacs
                "font-fira-code"
                "font-fira-mono"
+               "font-microsoft-impact"
                "htop"
                "ripgrep"
                "libvterm"
@@ -57,11 +58,10 @@
                ;;"rust:rustfmt"
                "rust-cargo"
                "rust-analyzer"
-               "cmake"
-               "make"
-               "gcc-toolchain"
                "markdown"
-               "xrandr"))))
+               "xrandr"
+               "node" ;; for npm
+               ))))
   (services
    (list
     ;; Activate redshift and set geolocation to "Malmö, Sweden"
@@ -81,8 +81,9 @@
               (environment-variables
                '(
                  ;; Add cargo bin to path
-                 ;; Add pip3 bin to path
-                 ("PATH" . "${PATH}:$HOME/.cargo/bin:$HOME/.local/bin")
+                 ("PATH" . "${PATH}:${HOME}/.cargo/bin")
+                 ;; Add pip3 to path
+                 ("PATH" . "${PATH}:${HOME}/.local/bin")
                  ;; Default editor for when the system edits a file, such as guix edit <pkg> or visudo etc.
                  ("EDITOR" . "emacsclient")
 
@@ -98,8 +99,14 @@
                  ;;("GUIX_PROFILE" . "$HOME/.guix-home/profile")
                  ("LD_LIBRARY_PATH" . "$GUIX_PROFILE/lib")
 
+                 ("_JAVA_AWT_WM_NONREPARENTING" . "1")
 
-                 ("_JAVA_AWT_WM_NONREPARENTING" . "1")))
+                 ;; https://github.com/sindresorhus/guides/blob/main/npm-global-without-sudo.md
+                 ;; mkdir "${HOME}/.npm-packages"
+                 ;; npm config set prefix "${HOME}/.npm-packages"
+                 ("NPM_PACKAGES" . "${HOME}/.npm-packages")
+                 ("PATH" . "${PATH}:$NPM_PACKAGES/bin")
+                 ("MANPATH" . "${MANPATH-$(manpath)}:$NPM_PACKAGES/share/man")))
               ;; When adding the (bashrc) element, it will include the contents
               ;; of provided file into bashrc, in addition to the default bashrc,
               ;; this may lead to duplicate content in bashrc, so don't include

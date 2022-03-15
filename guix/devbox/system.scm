@@ -70,7 +70,7 @@ Section \"InputClass\"
 	MatchIsKeyboard \"on\"
 EndSection")
 
- (define (my-services)
+(define (my-services)
      (append
     (list
      (service gnome-desktop-service-type)
@@ -155,8 +155,7 @@ EndSection")
         "netdev"
         "audio"
         "video"
-        "input"
-        )))
+        "input")))
     %base-user-accounts))
   (packages
    (append
