@@ -16,3 +16,6 @@ guix/*
 !guix/packages
 #!guix/*.scm
 #!guix/noname/
+!npm
+npm/*
+!npm/npmrc

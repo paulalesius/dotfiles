@@ -59,6 +59,8 @@
                "rust-cargo"
                "rust-analyzer"
                "markdown"
+               ;; Required to build stuff, for example for doom emacs to build the vterm module
+               "gcc-toolchain" "make" "cmake"
                "xrandr"
                "node" ;; for npm
                ))))
@@ -98,11 +100,13 @@
 
                  ;; Set guix-home as the profile so we manage it with this config only
                  ;; Also add the LD load path from the guix-home profile
-                 ;; I don't believe this is necessary?
-                 ;;("GUIX_PROFILE" . "$HOME/.guix-home/profile")
+                 ("GUIX_PROFILE" . "$HOME/.guix-home/profile")
                  ("LD_LIBRARY_PATH" . "$GUIX_PROFILE/lib")
 
                  ("_JAVA_AWT_WM_NONREPARENTING" . "1")
+
+                 ;; NPM needs to use XDG dirs
+                 ("NPM_CONFIG_USERCONFIG" . "$XDG_CONFIG_HOME/npm/npmrc")
 
                  ;; https://github.com/sindresorhus/guides/blob/main/npm-global-without-sudo.md
                  ;;
