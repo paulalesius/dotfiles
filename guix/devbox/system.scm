@@ -160,8 +160,8 @@ EndSection")
   (packages
    (append
    (map (compose list specification->package+output)
-        (list ;;"emacs-pgtk-native-comp"
-              "emacs-native-comp"
+        (list "emacs-pgtk-native-comp"
+              ;;"emacs-native-comp"
               "emacs-exwm-managed"
               ;;"emacs-desktop-environment"
               "emacs-guix"

@@ -93,6 +93,9 @@
                  ;; Where to find package definitions for guix edit and guix package
                  ("GUIX_PACKAGE_PATH" . "$XDG_CONFIG_HOME/guix/packages")
 
+                 ;; Ensure that GTK always uses x11, so that emacs with pgtk doesn't start on wayland
+                 ("GDK_BACKEND" . "x11")
+
                  ;; Set guix-home as the profile so we manage it with this config only
                  ;; Also add the LD load path from the guix-home profile
                  ;; I don't believe this is necessary?
@@ -102,11 +105,12 @@
                  ("_JAVA_AWT_WM_NONREPARENTING" . "1")
 
                  ;; https://github.com/sindresorhus/guides/blob/main/npm-global-without-sudo.md
-                 ;; mkdir "${HOME}/.npm-packages"
+                 ;;
                  ;; npm config set prefix "${HOME}/.npm-packages"
                  ("NPM_PACKAGES" . "${HOME}/.npm-packages")
                  ("PATH" . "${PATH}:$NPM_PACKAGES/bin")
-                 ("MANPATH" . "${MANPATH-$(manpath)}:$NPM_PACKAGES/share/man")))
+                 ("MANPATH" . "${MANPATH-$(manpath)}:$NPM_PACKAGES/share/man")
+                 ))
               ;; When adding the (bashrc) element, it will include the contents
               ;; of provided file into bashrc, in addition to the default bashrc,
               ;; this may lead to duplicate content in bashrc, so don't include
