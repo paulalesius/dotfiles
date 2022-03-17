@@ -19,3 +19,4 @@ guix/*
 !npm
 npm/*
 !npm/npmrc
+!xorg
