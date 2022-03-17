@@ -29,12 +29,12 @@
 (use-package-modules certs xdisorg)
 
 (define kernel-version
-  "5.16.14")
+  "5.16.15")
 
 ;; To download and print the has:
 ;; guix download <url to .tar.xz form kernel.org
 (define kernel-hash
-  "1xkl0mfjby7w6r3fqyjds94h2lmc77nzp970w7wz1rfmb63ab2vs")
+  "1mi41npkk1inqchm3yp14xmzc5lrp50d7vbpazwxwq5kw04c8c4g")
 
 ;; This method is overridden from gnu/packages/linux to change the URL
 (define
