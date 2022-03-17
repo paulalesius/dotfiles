@@ -64,7 +64,6 @@
                "xrandr"
                "node" ;; for npm
                "shellcheck" ;; For doom emacs language server
-               "xprop" "xrdb" ;; x property introspection
                ))))
   (services
    (list

@@ -31,7 +31,7 @@
     (propagated-inputs
      (list emacs-xelb))
     (inputs
-     (list xhost xrdb dbus))
+     (list xhost dbus))
     ;; The following functions and variables needed by emacs-exwm are
     ;; not included in emacs-minimal:
     ;; scroll-bar-mode, fringe-mode
@@ -60,11 +60,9 @@
                  (lambda _
                    (format #t "#!~a ~@
                      ~a +SI:localuser:$USER ~@
-                     [ -f ~/.config/xorg/xresources ] && ~a -merge ~/.config/xorg/xresources
                      exec ~a --exit-with-session ~a \"$@\" --eval '~s' ~%"
                            (search-input-file inputs "/bin/sh")
                            (search-input-file inputs "/bin/xhost")
-                           (search-input-file inputs "/bin/xrdb")
                            (search-input-file inputs "/bin/dbus-launch")
                            (search-input-file inputs "/bin/emacs")
                            '(cond
