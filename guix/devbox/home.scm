@@ -63,6 +63,7 @@
                "gcc-toolchain" "make" "cmake"
                "xrandr"
                "node" ;; for npm
+               "shellcheck" ;; For doom emacs language server
                ))))
   (services
    (list

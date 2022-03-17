@@ -38,4 +38,5 @@
 
 (use-package! goto-addr
   :config
-  (goto-address-mode 1))
+  ;; Only works in emacs 28, emacs 27 has only goto-address-mode
+  (global-goto-address-mode 1))
