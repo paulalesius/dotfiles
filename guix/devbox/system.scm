@@ -29,12 +29,12 @@
 (use-package-modules certs xdisorg)
 
 (define kernel-version
-  "5.16.15")
+  "5.16.16")
 
 ;; To download and print the has:
 ;; guix download <url to .tar.xz form kernel.org
 (define kernel-hash
-  "1mi41npkk1inqchm3yp14xmzc5lrp50d7vbpazwxwq5kw04c8c4g")
+  "13qk6cjnjwgnxj25mphyv08pjf1sqz7bxxrr3fpl8gz3aghdd9yc")
 
 ;; This method is overridden from gnu/packages/linux to change the URL
 (define
@@ -113,9 +113,7 @@ EndSection")
      "i915.enable_guc=2"
      "i915.enable_fbc=1"
      "i915.enable_dc=1"
-     ;; Required so that we use the IPv4 route through Wireguard
-     ;; until we have a firewall to block non-vpn connections.
-     "ipv6.disable=1"
+     ;;"ipv6.disable=1" - Enable IPv6 again, required for Rust build testing
      ;; intel_pstate causes throttling of the CPU with a bad charger, and
      ;; refuses to go to Turbo of 4.2Ghz, stays at maybe 1.2Ghz
      ;;

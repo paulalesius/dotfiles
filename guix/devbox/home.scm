@@ -64,7 +64,7 @@
                "xrandr"
                "node" ;; for npm
                "shellcheck" ;; For doom emacs language server
-               ))))
+               "file"))))
   (services
    (list
     ;; Activate redshift and set geolocation to "Malmö, Sweden"
@@ -101,8 +101,8 @@
 
                  ;; Set guix-home as the profile so we manage it with this config only
                  ;; Also add the LD load path from the guix-home profile
-                 ("GUIX_PROFILE" . "$HOME/.guix-home/profile")
-                 ("LD_LIBRARY_PATH" . "$GUIX_PROFILE/lib")
+                 ;;("GUIX_PROFILE" . "$HOME/.guix-home/profile")
+                 ;;("LD_LIBRARY_PATH" . "$GUIX_PROFILE/lib")
 
                  ("_JAVA_AWT_WM_NONREPARENTING" . "1")
 
