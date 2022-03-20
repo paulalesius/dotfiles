@@ -64,6 +64,7 @@
                "xrandr"
                "node" ;; for npm
                "shellcheck" ;; For doom emacs language server
+               "graphviz" ;; graphing, dot tool
                "file"))))
   (services
    (list

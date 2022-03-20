@@ -305,7 +305,9 @@ EndSection")
   ;; truncate -s 0 /swap/swapfile
   ;; chattr +C /swap/swapfile
   ;; btrfs property set /swap/swapfile compression none
-  ;; fallocate -l $(free -b | awk 'NR == 2 {print $2}') /swap/swapfile # same size as RAM in bytes
+  ;; # Allocate three times the RAM, so that large builds such as webkit don't run out
+  ;; # while having other programs open.
+  ;; fallocate -l $[$(free -b | awk 'NR == 2 {print $2}')] /swap/swapfile
   ;; chmod 600 /swap/swapfile
   (swap-devices
    (list
