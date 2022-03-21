@@ -94,8 +94,9 @@
                  ;; History file should be located somewher appropriate
                  ("HISTFILE" . "$XDG_CACHE_HOME/.bash_history")
 
+                 ;; Disable, these package files will be moved into a custom channel
                  ;; Where to find package definitions for guix edit and guix package
-                 ("GUIX_PACKAGE_PATH" . "$XDG_CONFIG_HOME/guix/packages")
+                 ;;("GUIX_PACKAGE_PATH" . "$XDG_CONFIG_HOME/guix/packages")
 
                  ;; Ensure that GTK always uses x11, so that emacs with pgtk doesn't start on wayland
                  ("GDK_BACKEND" . "x11")

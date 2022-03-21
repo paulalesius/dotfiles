@@ -15,7 +15,8 @@
  (guix git-download)
  (guix utils)
  (nongnu packages linux)
- (nongnu system linux-initrd))
+ (nongnu system linux-initrd)
+ (unnsvc emacs))
 
 (use-service-modules
  desktop    ;; GNOME-based desktop services, gdm, NetworkManager, etc.
@@ -157,10 +158,11 @@ EndSection")
     %base-user-accounts))
   (packages
    (append
+    (list emacs-exwm-managed)
    (map (compose list specification->package+output)
         (list "emacs-pgtk-native-comp"
               ;;"emacs-native-comp"
-              "emacs-exwm-managed"
+              ;;"emacs-exwm-managed"
               ;;"emacs-desktop-environment"
               "emacs-guix"
               ;;"emacs-pinentry"
