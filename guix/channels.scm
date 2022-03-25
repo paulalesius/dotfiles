@@ -4,8 +4,9 @@
     (channel
         (name 'guix)
         (url "https://git.savannah.gnu.org/git/guix.git")
-        ;;(url "file:///storage/src/guix/guix"))
         (branch "master")
+        ;;(url "file:///storage/src/guix/guix"))
+        ;;(branch "custom")
         (introduction
           (make-channel-introduction "9edb3f66fd807b096b48283debdcddccfea34bad"
             (openpgp-fingerprint "BBB0 2DDF 2CEA F6A8 0D1D  E643 A2A0 6DF2 A33A 54FA"))))
@@ -26,4 +27,13 @@
          (make-channel-introduction
           "33f86a4b48205c0dc19d7c036c85393f0766f806"
           (openpgp-fingerprint
-           "736A C00E 1254 378B A982  7AF6 9DBE 8265 81B6 4490")))))
+           "736A C00E 1254 378B A982  7AF6 9DBE 8265 81B6 4490"))))
+      (channel
+       (name 'unnsvc)
+       (url "https://github.com/paulalesius/guix-channel")
+       (branch "main")
+       (introduction
+        (make-channel-introduction
+         "79dd279b6d3bab971e84fce99bf48f3f3ad259c7"
+         (openpgp-fingerprint
+          "4FBD 7445 5FDD 4E6E 75B1 D91B FAB8 710F BCD2 0E1C")))))

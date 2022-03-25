@@ -15,7 +15,7 @@
   (gnu home services shells)
   (gnu packages emacs)
   (gnu services sound)
-  (gnu packages rust)
+  ;;(gnu packages rust) Not in mainline yet, build from source
   (gnu home services)
   (gnu home services xdg))
 
@@ -30,7 +30,7 @@
     ;; Append an additional output of rust
     ;; Adding "rust:rustfmt" to the specifications, seems to replace the original rust:out,
     ;; so add it this way instead.
-    (list rust "rustfmt")
+    ;;(list rust "rustfmt") Not in mainline yet, build from source
     (map (compose list specification->package+output)
          (list "x265"
                "ffmpeg"
@@ -48,24 +48,23 @@
                "font-microsoft-impact"
                "htop"
                "ripgrep"
-               "libvterm"
                "git"
                "git-remote-gcrypt" ;; For encrypted git repos
                "firefox"
                "gimp"
                "python"
-               "rust"
+               ;;"rust"
                ;;"rust:rustfmt"
-               "rust-cargo"
-               "rust-analyzer"
+               ;;"rust-cargo"
+               ;;"rust-analyzer"
+               "libvterm" ;; Needs permission to compile, so keep in home
                "markdown"
-               ;; Required to build stuff, for example for doom emacs to build the vterm module
-               "gcc-toolchain" "make" "cmake"
                "xrandr"
                "node" ;; for npm
                "shellcheck" ;; For doom emacs language server
                "graphviz" ;; graphing, dot tool
-               "file"))))
+               "file"
+               "gcc-toolchain" "make" "cmake"))))
   (services
    (list
     ;; Activate redshift and set geolocation to "Malmö, Sweden"
@@ -80,10 +79,8 @@
              (home-bash-configuration
               (guix-defaults? #t)
              ;; Setting aliases generates .bashrc once with default script
-              (aliases
-               '(("ec" . "emacsclient")))
-              (environment-variables
-               '(
+              (aliases '(("ec" . "emacsclient")))
+              (environment-variables '(
                  ;; Add cargo bin to path
                  ("PATH" . "${PATH}:${HOME}/.cargo/bin")
                  ;; Add pip3 to path
@@ -116,8 +113,12 @@
                  ;; npm config set prefix "${HOME}/.npm-packages"
                  ("NPM_PACKAGES" . "${HOME}/.npm-packages")
                  ("PATH" . "${PATH}:$NPM_PACKAGES/bin")
-                 ("MANPATH" . "${MANPATH-$(manpath)}:$NPM_PACKAGES/share/man")
-                 ))
+                 ("MANPATH" . "${MANPATH-$(manpath)}:$NPM_PACKAGES/share/man")))
+
+              ;; Attempt to activate extra profiles
+              ;;(bash-profile
+              ;; (list (local-file "bash.bash_profile")))
+
               ;; When adding the (bashrc) element, it will include the contents
               ;; of provided file into bashrc, in addition to the default bashrc,
               ;; this may lead to duplicate content in bashrc, so don't include
