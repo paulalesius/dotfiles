@@ -46,6 +46,7 @@
                "font-fira-code"
                "font-fira-mono"
                "font-microsoft-impact"
+               "font-adobe-source-han-sans:cn"
                "htop"
                "ripgrep"
                "git"
@@ -107,6 +108,11 @@
 
                  ;; NPM needs to use XDG dirs
                  ("NPM_CONFIG_USERCONFIG" . "$XDG_CONFIG_HOME/npm/npmrc")
+
+                 ;; Set RUST_SRC_PATH so that rust-analyzer finds rust source code
+                 ;; Doesn't work, rust-analyzer fails to find sysroot, rustc too
+                 ;;("RUST_SRC_PATH" . "/storage/src/rust/rust/")
+                 ("RUST_SRC_PATH" . "/home/noname/.guix-profile/lib/rustlib/src/rust/library")
 
                  ;; https://github.com/sindresorhus/guides/blob/main/npm-global-without-sudo.md
                  ;;
