@@ -18,3 +18,5 @@ guix/*
 !npm
 npm/*
 !npm/npmrc
+# Allow bitcoin config
+!bitcoin

@@ -81,7 +81,8 @@
              (home-bash-configuration
               (guix-defaults? #t)
              ;; Setting aliases generates .bashrc once with default script
-              (aliases '(("ec" . "emacsclient")))
+              (aliases '(("ec" . "emacsclient")
+                         ("bitcoind-start" . "bitcoind -datadir=/storage/bitcoind")))
               (environment-variables '(
                  ;; Add cargo bin to path
                  ("PATH" . "${PATH}:${HOME}/.cargo/bin")
