@@ -40,7 +40,8 @@
 
       ;;; doom core
       doom-theme 'doom-one
-      doom-font (font-spec :family "Fira Code" :size 12 :weight 'Regular) ;;semi-light/...
+      ;;doom-font (font-spec :family "Fira Code" :size 12 :weight 'Regular) ;;semi-light/...
+      doom-font (font-spec :family "FiraCode Nerd Font" :size 12 :weight 'Regular)
       ;;; doom-variable-pitch-font (font-spec :family "Noto Serif" :size 10)
       ;;; doom-big-font ... used in doom-big-font-mode
       display-line-numbers-type 'relative
@@ -79,7 +80,7 @@
 
 ;; Disable mouse support by removing the tty setup hook
 ;; This seems to come from os/tty module in doom-emacs, there's no after! for it?
-(remove-hook 'tty-setup-hook #'xterm-mouse-mode)
+;;(remove-hook 'tty-setup-hook #'xterm-mouse-mode)
 
 ;; Make the which-key panel show much faster
 ;;(after! which-key

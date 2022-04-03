@@ -6,3 +6,4 @@
 	signingkey = 4FBD74455FDD4E6E75B1D91BFAB8710FBCD20E1C
 [commit]
 	pgpsign = true
+	gpgsign = true
