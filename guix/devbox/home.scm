@@ -65,6 +65,7 @@
                "shellcheck" ;; For doom emacs language server
                "graphviz" ;; graphing, dot tool
                "file"
+               ;; General development tools
                "gcc-toolchain" "make" "cmake"))))
   (services
    (list

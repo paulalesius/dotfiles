@@ -9,6 +9,7 @@
  (gnu packages display-managers)
  ;;(gnu services pm)
  (gnu services)
+ (gnu services virtualization)
  ;;(gnu services shepherd)
  (guix packages)
  (guix download)
@@ -154,7 +155,8 @@ EndSection")
         "netdev"
         "audio"
         "video"
-        "input")))
+        "input"
+        "libvirt")))
     %base-user-accounts))
   (packages
    (append
@@ -205,7 +207,14 @@ EndSection")
          (wifi-pwr-on-bat? #t)))
      (service nftables-service-type
         (nftables-configuration
-         (ruleset (local-file (string-append (dirname (current-filename)) "/nftables.conf"))))))
+         (ruleset (local-file (string-append (dirname (current-filename)) "/nftables.conf")))))
+     (service libvirt-service-type
+              (libvirt-configuration
+               ;; Allow users of this group to access privileged use, defaults to root but use libvirt group
+               (unix-sock-group "libvirt")))
+     (service virtlog-service-type
+              (virtlog-configuration
+               (max-clients 8))))
      ;; Build failure, add once thermald is updated
      ;; src/thd_engine_adaptive.cpp:1002:61: error: ‘gboolean up_client_get_lid_is_closed(UpClient*)’ is deprecated [-Werror=deprecated-declarations]
      ;; 1002 |  bool lid_closed = up_client_get_lid_is_closed(upower_client);
