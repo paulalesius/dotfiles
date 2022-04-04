@@ -11,6 +11,8 @@ table inet filter {
 
     # allow from loopback
     iifname lo accept
+    # allow incoming DHCP requests into the bridge
+    iifname virbr0 udp dport 67 accept
 
     # allow icmp
     #ip protocol icmp accept
@@ -23,7 +25,7 @@ table inet filter {
     reject with icmpx type port-unreachable
   }
   chain forward {
-    type filter hook forward priority 0; policy accept;
+    type filter hook forward priority 0; policy drop;
   }
   chain output {
     type filter hook output priority 0; policy accept;
