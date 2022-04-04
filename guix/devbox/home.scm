@@ -34,7 +34,6 @@
     (map (compose list specification->package+output)
          (list "x265"
                "ffmpeg"
-               "ffmpegthumbnailer" ;; Generate thumbnails for nautilus etc
                "gnupg"
                "vlc"
                "curl"
