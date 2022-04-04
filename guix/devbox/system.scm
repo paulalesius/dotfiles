@@ -31,12 +31,12 @@
 (use-package-modules certs xdisorg)
 
 (define kernel-version
-  "5.16.18")
+  "5.17.1")
 
 ;; To download and print the has:
 ;; guix download <url to .tar.xz form kernel.org
 (define kernel-hash
-  "096f80m2czj8khvil7s037pqdf1s6pklqn5d9419jqkz7v70piry")
+  "092cx18va108lb27kxx2b00ma3l9g22nmkk81034apx26bacbmbw")
 
 ;; This method is overridden from gnu/packages/linux to change the URL
 (define
@@ -49,10 +49,10 @@
 
 ;; Override to the latest minor version and source hash (guix hash)
 (define-public linux-5.16
-  (corrupt-linux linux-libre-5.16 kernel-version kernel-hash))
+  (corrupt-linux linux-libre-5.17 kernel-version kernel-hash))
 
 ;; Overrides framework version that defaults to linux-5.15
-(define-public linux linux-5.16)
+(define-public linux linux-5.17)
 
 (define %xorg-libinput-config
   "Section \"InputClass\"
@@ -135,7 +135,13 @@ EndSection")
      ))
   (initrd microcode-initrd)
   (initrd-modules
-   (delete "framebuffer_coreboot" %base-initrd-modules))
+   ;; The point where you learn Guile properly...
+   ;;(lset-difference eqv? %base-initrd-modules '("framebuffer_coreboot") '("pata_acpi")))
+   ;;(delete ("framebuffer_coreboot" "pata_acpi" "pata_atiixp") %base-initrd-modules))
+   (delete "framebuffer_coreboot"
+           ;; pata_acpi is not in this kernel version
+           (delete "pata_acpi"
+                   (delete "pata_atiixp" %base-initrd-modules))))
   (firmware
    (list linux-firmware sof-firmware iwlwifi-firmware))
   (locale "en_US.utf8")

@@ -11,7 +11,7 @@ table inet filter {
 
     # allow from loopback
     iifname lo accept
-    # Incoming DNS and DHCP requests into the bridge
+    # Incoming DNS and DHCP requests into the bridge, used for libvirt
     iifname virbr0 udp dport { 53, 67 } accept
 
     # allow icmp
@@ -25,6 +25,7 @@ table inet filter {
     reject with icmpx type port-unreachable
   }
   chain forward {
+    # Set to accept to forward libvirt? @TODO more granular forwarding.
     type filter hook forward priority 0; policy accept;
   }
   chain output {
