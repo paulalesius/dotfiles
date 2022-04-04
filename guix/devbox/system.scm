@@ -176,7 +176,8 @@ EndSection")
               "btrfs-progs"
               "brightnessctl"
               "xf86-input-libinput"
-              "tlp"))
+              "tlp"
+              "bridge-utils"))
    %base-packages))
    ;;(append
    ;; (list
@@ -207,7 +208,7 @@ EndSection")
          (wifi-pwr-on-bat? #t)))
      (service nftables-service-type
         (nftables-configuration
-         (ruleset (local-file (string-append (dirname (current-filename)) "/nftables.conf")))))
+         (ruleset (local-file (string-append (dirname (current-filename)) "/nftables.nft")))))
      (service libvirt-service-type
               (libvirt-configuration
                ;; Allow users of this group to access privileged use, defaults to root but use libvirt group

@@ -34,6 +34,7 @@
     (map (compose list specification->package+output)
          (list "x265"
                "ffmpeg"
+               "ffmpegthumbnailer" ;; Generate thumbnails for nautilus etc
                "gnupg"
                "vlc"
                "curl"
@@ -41,6 +42,7 @@
                "scrot"
                "yt-dlp"
                "fd"
+               "zip" "unzip"
                "rsync"
                ;; The fonts I use in emacs
                "font-fira-code"
