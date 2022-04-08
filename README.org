@@ -1,3 +1,6 @@
+* Decommissioned repository
+Ended up with too much security-sensitive data to further push publically.
+
 * Dotfiles
 My GuixSD/Emacs configuration.
 
